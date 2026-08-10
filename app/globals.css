@@ -68,7 +68,7 @@ p { line-height: 1.7; }
 .hero-note { display: flex; align-items: center; gap: 14px; margin-top: 50px; color: var(--muted); font-size: 12px; letter-spacing: .06em; }
 .hero-note i { width: 42px; height: 1px; background: var(--brass); }
 .hero-visual { position: relative; min-height: 630px; overflow: hidden; background: #25211d; }
-.hero-visual::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(28, 20, 14, .58), rgba(96, 42, 30, .08)), url("https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=1400&q=85") center/cover; filter: saturate(.73) sepia(.18); }
+.hero-visual::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(28, 20, 14, .58), rgba(96, 42, 30, .08)), url("/lcb-bible-homepage.jpg") center/cover; filter: saturate(.73) sepia(.18); }
 .hero-visual::after { content: ""; position: absolute; inset: 26px; border: 1px solid rgba(255, 244, 222, .5); pointer-events: none; }
 .hero-stamp { position: absolute; right: 52px; bottom: 48px; width: 132px; height: 132px; border: 1px solid rgba(255, 244, 222, .65); border-radius: 50%; display: grid; place-items: center; color: #fff5e8; text-align: center; text-transform: uppercase; font-size: 10px; letter-spacing: .16em; line-height: 1.5; z-index: 1; }
 .hero-stamp::before { content: "✦"; font-size: 17px; position: absolute; top: 14px; }
