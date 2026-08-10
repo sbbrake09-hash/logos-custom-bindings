@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-html-link-for-pages -- the site uses plain crawlable anchors for intentionally simple static navigation. */
 import type { Metadata } from "next";
+import Image from "next/image";
 
 const BASE_URL = "https://logoscustombindings.com";
 const JOTFORM_URL = "https://form.jotform.com/250864020093147?canva-app=1&_height=620";
@@ -121,7 +122,7 @@ function OrganizationSchema() {
     <JsonLd data={{
       "@context": "https://schema.org",
       "@graph": [
-        { "@type": "Organization", "@id": `${BASE_URL}/#organization`, name: "Logos Custom Bindings", url: BASE_URL, logo: absolute("/favicon.svg"), sameAs: ["https://www.etsy.com/", "https://www.instagram.com/"] },
+        { "@type": "Organization", "@id": `${BASE_URL}/#organization`, name: "Logos Custom Bindings", url: BASE_URL, logo: absolute("/lcb-circle-logo.png"), sameAs: ["https://www.etsy.com/", "https://www.instagram.com/"] },
         { "@type": "WebSite", "@id": `${BASE_URL}/#website`, url: BASE_URL, name: "Logos Custom Bindings", publisher: { "@id": `${BASE_URL}/#organization` } },
       ],
     }} />
@@ -137,7 +138,7 @@ function Header() {
     <header className="site-header">
       <div className="header-inner">
         <a href="/" className="brand" aria-label="Logos Custom Bindings home">
-          <span className="brand-mark" aria-hidden="true"><span>ℒ</span></span>
+          <Image src="/lcb-circle-logo.png" alt="" width={44} height={44} className="brand-logo" />
           <span className="brand-text"><strong>Logos</strong><small>Custom Bindings</small></span>
         </a>
         <nav className="nav" aria-label="Primary navigation">
@@ -159,7 +160,7 @@ function Footer() {
     <footer className="footer">
       <div className="container footer-main">
         <div>
-          <a href="/" className="brand"><span className="brand-mark" aria-hidden="true"><span>ℒ</span></span><span className="brand-text"><strong>Logos</strong><small>Custom Bindings</small></span></a>
+          <a href="/" className="brand" aria-label="Logos Custom Bindings home"><Image src="/lcb-circle-logo.png" alt="" width={44} height={44} className="brand-logo" /><span className="brand-text"><strong>Logos</strong><small>Custom Bindings</small></span></a>
           <p>Custom Bible rebinding, book restoration, and handcrafted notebooks made with care and shipped throughout the United States.</p>
         </div>
         <div><h4>Explore</h4><div className="footer-links"><a href="/bible-rebinding/">Bible Rebinding</a><a href="/book-restoration/">Book Restoration</a><a href="/hand-bound-notebooks/">Hand-Bound Notebooks</a><a href="/portfolio/">Portfolio</a></div></div>
