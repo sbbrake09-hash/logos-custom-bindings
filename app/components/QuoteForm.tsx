@@ -51,7 +51,7 @@ export default function QuoteForm() {
       onSubmit={handleSubmit}
     >
       <input type="hidden" name="form-name" value="custom-binding-quote" />
-      <input type="hidden" name="subject" value="New Logos Custom Bindings quote request" />
+      <input type="hidden" name="subject" data-remove-prefix value="New Logos Custom Bindings quote request" />
       <p className="honeypot" aria-hidden="true"><label>Don’t fill this out: <input name="bot-field" tabIndex={-1} autoComplete="off" /></label></p>
 
       <fieldset>
