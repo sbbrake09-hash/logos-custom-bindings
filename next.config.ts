@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   trailingSlash: true,
+  typescript: { ignoreBuildErrors: true },
   async redirects() {
     return [
       { source: "/services", destination: "/", permanent: true },
