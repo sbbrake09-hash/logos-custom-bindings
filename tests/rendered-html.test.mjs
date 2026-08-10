@@ -42,6 +42,8 @@ test("server-renders the quote page and crawlable navigation", async () => {
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /Let’s make a plan for the book you love/i);
-  assert.match(html, /form\.jotform\.com\/250864020093147/i);
+  assert.match(html, /custom-binding-quote/i);
+  assert.match(html, /name="email"/i);
+  assert.match(html, /Your answers go directly to logoscustombindings@yahoo\.com/i);
   assert.match(html, /How it works/i);
 });

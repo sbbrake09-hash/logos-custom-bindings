@@ -1,10 +1,9 @@
 /* eslint-disable @next/next/no-html-link-for-pages -- the site uses plain crawlable anchors for intentionally simple static navigation. */
 import type { Metadata } from "next";
 import Image from "next/image";
+import QuoteForm from "./components/QuoteForm";
 
 const BASE_URL = "https://logoscustombindings.com";
-const JOTFORM_URL = "https://form.jotform.com/250864020093147?canva-app=1&_height=620";
-
 type Service = {
   slug: string;
   eyebrow: string;
@@ -235,7 +234,7 @@ function FaqPage() {
 }
 
 function QuotePage() {
-  return <Shell><main className="quote-page"><section className="page-hero"><div className="container"><Breadcrumbs current="Request a Quote" /><p className="eyebrow">Start your project</p><h1>Let’s make a plan for the book you love.</h1><p className="lead">Tell us what you are starting with, what you want to change, and the feeling you want the finished piece to have. We serve customers nationwide by mail.</p></div></section><section className="section"><div className="container quote-shell"><div className="quote-intro"><p className="eyebrow">A little context helps</p><h2>Bring the details. We’ll bring the craft.</h2><p>For the most useful first response, have these details nearby:</p><ul><li>What kind of book or Bible is it?</li><li>What condition is the cover and spine in?</li><li>What materials or colors are you drawn to?</li><li>Do you want imprinting, ribbons, or other details?</li><li>When do you hope to have it back?</li></ul><p>After you submit, we may follow up for photos or a few additional measurements.</p></div><div className="form-card"><p className="eyebrow">Project intake</p><h2>Tell us about your book.</h2><p>The form below connects to the existing Logos contact workflow. Include as much detail as you can in the message field.</p><iframe className="jotform" title="Logos Custom Bindings project quote form" src={JOTFORM_URL} loading="lazy" /> <p className="form-fallback">Prefer a direct link? <a href="https://form.jotform.com/250864020093147" target="_blank" rel="noreferrer">Open the quote form in a new window ↗</a></p></div></div></section></main></Shell>;
+  return <Shell><main className="quote-page"><section className="page-hero"><div className="container"><Breadcrumbs current="Request a Quote" /><p className="eyebrow">Start your project</p><h1>Let’s make a plan for the book you love.</h1><p className="lead">Tell us what you are starting with, what you want to change, and the feeling you want the finished piece to have. We serve customers nationwide by mail.</p></div></section><section className="section"><div className="container quote-shell"><div className="quote-intro"><p className="eyebrow">A little context helps</p><h2>Bring the details. We’ll bring the craft.</h2><p>For the most useful first response, have these details nearby:</p><ul><li>Your name and best email address</li><li>What kind of book or Bible it is</li><li>Its condition, size, and current cover</li><li>Materials, colors, and personal details you are considering</li><li>Your timing and any special occasion</li></ul><p>One photo is optional, but a look at the cover, spine, or damage helps us give you a more thoughtful first response.</p></div><div className="form-card"><p className="eyebrow">Project intake</p><h2>Tell us about your book.</h2><p>Your answers go directly to logoscustombindings@yahoo.com so we can review the project and follow up with you.</p><QuoteForm /></div></div></section></main></Shell>;
 }
 
 function ShopPage() {
