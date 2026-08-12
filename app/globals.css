@@ -121,6 +121,13 @@ p { line-height: 1.7; }
 .prose h3 { margin: 40px 0 13px; font-size: 27px; }
 .prose p { color: var(--muted); }
 .prose ul { margin: 18px 0; padding-left: 20px; color: var(--muted); line-height: 1.9; }
+.story-layout { display: grid; grid-template-columns: .78fr 1.22fr; gap: 90px; align-items: start; }
+.story-quote { position: sticky; top: 112px; padding: 34px 0 34px 32px; border-left: 2px solid var(--brass); }
+.story-quote blockquote { margin: 26px 0 22px; color: var(--ink); font: 400 clamp(32px, 4vw, 54px)/1.08 Georgia, serif; letter-spacing: -.025em; }
+.story-quote cite { color: var(--clay); font-size: 11px; font-style: normal; letter-spacing: .18em; text-transform: uppercase; }
+.story-copy { max-width: 700px; }
+.story-copy p:first-child { color: var(--ink); font-size: 18px; }
+.story-signoff { margin-top: 34px; color: var(--ink) !important; font: italic 24px Georgia, serif; }
 .service-aside { align-self: start; position: sticky; top: 112px; padding: 30px; border: 1px solid var(--line); background: var(--cream); }
 .service-aside h3 { font-size: 26px; }
 .service-aside p { color: var(--muted); font-size: 14px; }
@@ -191,7 +198,8 @@ p { line-height: 1.7; }
   .hero { display: flex; flex-direction: column; }
   .hero-copy { padding: 82px 20px 65px; }
   .hero-visual { min-height: 390px; }
-  .intro, .service-layout, .quote-shell { grid-template-columns: 1fr; gap: 45px; }
+  .intro, .service-layout, .quote-shell, .story-layout { grid-template-columns: 1fr; gap: 45px; }
+  .story-quote { position: static; padding: 0 0 34px; border-left: 0; border-bottom: 2px solid var(--brass); }
   .service-aside { position: static; }
   .service-grid { grid-template-columns: 1fr; }
   .service-card { min-height: 250px; }
