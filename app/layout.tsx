@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     template: "%s | Logos Custom Bindings",
   },
   description:
-    "Custom Bible rebinding, leather Bible covers, book restoration, and hand-bound notebooks crafted with care and shipped nationwide.",
+    "Custom Bible rebinding and restoration, hand-bound journals, Bible and journal customizations, and one-of-a-kind custom work crafted with care and shipped nationwide.",
   applicationName: "Logos Custom Bindings",
   keywords: [
     "Bible rebinding",

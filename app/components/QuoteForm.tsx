@@ -80,8 +80,9 @@ export default function QuoteForm() {
             <option>Bible repair or restoration</option>
             <option>Custom leather Bible</option>
             <option>Book or journal restoration</option>
-            <option>Hand-bound notebook or journal</option>
-            <option>Custom book cover</option>
+            <option>Hand-bound journal or custom notebook</option>
+            <option>Customizations for a Bible, journal, or notebook</option>
+            <option>Custom note pad holder or other custom work</option>
             <option>Not sure yet</option>
           </select>
         </label>

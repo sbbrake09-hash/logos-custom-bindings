@@ -22,6 +22,10 @@ test("server-renders the premium homepage without starter content", async () => 
   const html = await response.text();
   assert.match(html, /Custom Bible rebinding and beautifully made books/i);
   assert.match(html, /Crafted to hold what matters/i);
+  assert.match(html, /Bible Rebinding &amp; Restoration|Bible Rebinding & Restoration/i);
+  assert.match(html, /Hand-Bound Journals/i);
+  assert.match(html, /Customizations/i);
+  assert.match(html, /Custom Work/i);
   assert.match(html, /application\/ld\+json/i);
   assert.match(html, /OAI-SearchBot|nationwide/i);
   assert.doesNotMatch(html, /Your site is taking shape|react-loading-skeleton|codex-preview/i);
