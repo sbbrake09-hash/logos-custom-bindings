@@ -28,7 +28,7 @@ export const metadata: Metadata = {
       "Thoughtfully made leather bindings for Bibles, journals, notebooks, and treasured books.",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=1600&q=85",
+        url: "https://logoscustombindings.com/lcb-bible-homepage.jpg",
         width: 1600,
         height: 1067,
         alt: "A well-loved book resting on a crafted leather surface",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     description:
       "Custom Bible rebinding and handcrafted journals, made with lasting materials and care.",
     images: [
-      "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=1600&q=85",
+      "https://logoscustombindings.com/lcb-bible-homepage.jpg",
     ],
   },
   robots: { index: true, follow: true },

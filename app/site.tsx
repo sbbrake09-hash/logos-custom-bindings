@@ -226,13 +226,20 @@ export function ServicePage({ service }: { service: Service }) {
 }
 
 function PortfolioPage() {
+  return <PortfolioPageReal />;
+}
+
+function PortfolioPageReal() {
   const projects = [
-    ["Custom Bible rebinding", "A worn cover replaced with a lasting leather binding and personal detail.", "one"],
-    ["Hand-bound journal", "A colorful, tactile writing companion made for everyday return.", "two"],
-    ["Journal restoration", "A well-loved notebook renewed without losing its familiar character.", "three"],
-    ["Personalized details", "Imprinting, ribbons, contrast, and the little decisions that finish a piece.", "one"],
+    { title: "Bible Rebinding & Personalized Imprinting", copy: "A dark leather Bible with reinforced spine, gold lettering, and custom ribbons.", image: "/portfolio/bible-rebinding-imprinting.jpg", alt: "Custom rebound Bible with tooled spine, red ribbons, and gold scripture imprinting." },
+    { title: "Hand-Bound Journals in Color", copy: "Bright turquoise and pink leather journals with contrasting ribbons and personalized details.", image: "/portfolio/hand-bound-journals-color.jpg", alt: "Turquoise and pink hand-bound journals with leather covers and ribbon markers." },
+    { title: "Bible Rebinding & Ribbon Details", copy: "A collection of custom Bible bindings finished with gold imprinting and coordinating ribbons.", image: "/portfolio/stacked-bibles-imprinting.png", alt: "Stacked custom Bibles with leather covers, gold imprinting, and colorful ribbon markers." },
+    { title: "Custom Leather Bible Finish", copy: "A close-up of textured leather, gilt page edges, and custom scripture ribbons.", image: "/portfolio/leather-bible-ribbons.png", alt: "Close-up of a leather Bible with gilt page edges and red scripture ribbons." },
+    { title: "Textured Leather & Personalization", copy: "Crocodile-textured leather cover with a hand-finished personalized panel.", image: "/portfolio/textured-leather-personalization.jpg", alt: "Black textured leather Bible cover with a personalized hand-finished panel." },
+    { title: "Custom Bible Pair", copy: "Two personalized leather Bibles with contrasting page edges and ribbon markers.", image: "/portfolio/two-custom-bibles.jpg", alt: "Two personalized black leather Bibles with contrasting page edges and ribbon markers." },
+    { title: "Custom Bible Covers", copy: "A collection of finished Bibles showing leather covers, imprinting, ribbons, and edge treatments.", image: "/portfolio/stacked-bibles-edited.jpg", alt: "Collection of finished custom Bible covers with leather, imprinting, and ribbon details." },
   ];
-  return <Shell><main><section className="page-hero"><div className="container"><Breadcrumbs current="Portfolio" /><p className="eyebrow">Past work</p><h1>Objects made to become part of the story.</h1><p className="lead">A selection of custom Bible rebinding, restored journals, and handcrafted notebooks. More than a gallery, these are examples of what careful work can make possible.</p></div></section><section className="section"><div className="container"><div className="portfolio-grid">{projects.map(([title, copy, image], index) => <article className={`project ${image} ${index === 0 ? "large" : ""}`} key={title}><div className="project-label"><strong>{title}</strong><span>{copy}</span></div></article>)}</div><div className="quote-strip rule"><div><p className="eyebrow">Your project will be different</p><h2>Bring us the idea, the heirloom, or the worn favorite.</h2></div><a className="button" href="/request-a-quote/">Start a conversation ↗</a></div></div></section></main></Shell>;
+  return <Shell><main><section className="page-hero"><div className="container"><Breadcrumbs current="Portfolio" /><p className="eyebrow">Past work</p><h1>Objects made to become part of the story.</h1><p className="lead">Explore real examples of custom Bible rebinding, leather Bible covers, personalized imprinting, hand-bound journals, and carefully finished bookbinding work.</p></div></section><section className="section"><div className="container"><div className="portfolio-grid">{projects.map((project, index) => <article className={`project ${index === 0 ? "large" : ""} ${index === projects.length - 1 ? "wide" : ""}`} key={project.title}><Image src={project.image} alt={project.alt} fill sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw" className="project-image" /><div className="project-label"><strong>{project.title}</strong><span>{project.copy}</span></div></article>)}</div><div className="quote-strip rule"><div><p className="eyebrow">Your project will be different</p><h2>Bring us the idea, the heirloom, or the worn favorite.</h2></div><a className="button" href="/request-a-quote/">Start a conversation</a></div></div></section></main></Shell>;
 }
 
 function ProcessPage() {

@@ -50,6 +50,18 @@ test("server-renders the custom work service page", async () => {
   assert.match(html, /Request a Quote/i);
 });
 
+test("server-renders the portfolio with real project photography", async () => {
+  const response = await render("/portfolio/");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Bible Rebinding &amp; Personalized Imprinting|Bible Rebinding & Personalized Imprinting/i);
+  assert.match(html, /Hand-Bound Journals in Color/i);
+  assert.match(html, /portfolio\/bible-rebinding-imprinting\.jpg/i);
+  assert.match(html, /portfolio\/textured-leather-personalization\.jpg/i);
+  assert.match(html, /alt="Custom rebound Bible/i);
+  assert.doesNotMatch(html, /images\.unsplash\.com/i);
+});
+
 test("server-renders the quote page and crawlable navigation", async () => {
   const response = await render("/request-a-quote/");
   assert.equal(response.status, 200);
