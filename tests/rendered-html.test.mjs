@@ -26,6 +26,10 @@ test("server-renders the premium homepage without starter content", async () => 
   assert.match(html, /Hand-Bound Journals/i);
   assert.match(html, /Customizations/i);
   assert.match(html, /Custom Work/i);
+  assert.match(html, /5-star craftsmanship/i);
+  assert.match(html, /Brandall Brake/i);
+  assert.match(html, /Ashlie Parker Harman/i);
+  assert.match(html, /Pastor Steve Epley/i);
   assert.match(html, /application\/ld\+json/i);
   assert.match(html, /OAI-SearchBot|nationwide/i);
   assert.doesNotMatch(html, /Your site is taking shape|react-loading-skeleton|codex-preview/i);

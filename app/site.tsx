@@ -212,9 +212,14 @@ export function HomePage() {
         <section className="section"><div className="container"><div className="section-header"><div><p className="eyebrow">Selected work</p><h2>Made one piece at a time.</h2></div><a href="/portfolio/" className="button secondary">See the portfolio ↗</a></div><div className="portfolio-grid"><a className="project large one" href="/portfolio/"><div className="project-label"><strong>Rebound in character</strong><span>Custom Bible rebinding</span></div></a><a className="project two" href="/portfolio/"><div className="project-label"><strong>For the daily page</strong><span>Hand-bound journal</span></div></a><a className="project three" href="/portfolio/"><div className="project-label"><strong>A treasured return</strong><span>Book restoration</span></div></a></div></div></section>
 
         <section className="section compact" style={{ background: "#ede5da" }}><div className="container quote-strip"><div><p className="eyebrow">Your book has a next chapter</p><h2>Tell us what you want to keep—and what you want to change.</h2><p>Share a few details and photos. We will help you find the right approach for your project.</p></div><a href="/request-a-quote/" className="button">Request a Quote <span aria-hidden="true">↗</span></a></div></section>
+        <ReviewsSection />
       </main>
     </Shell>
   );
+}
+
+function ReviewsSection() {
+  return <section className="section reviews-section"><div className="container"><div className="reviews-heading"><div><p className="eyebrow">Words from the workbench</p><h2>Beautiful work, treasured for years.</h2></div><div className="review-rating"><span className="review-stars" aria-label="5 out of 5 stars">★★★★★</span><strong>5-star craftsmanship</strong><span>Customer reviews</span></div></div><div className="review-grid"><article className="review-card"><span className="review-mark" aria-hidden="true">“</span><blockquote>My Bible was worn out from 20 years of use but Logos Custom Bindings gave it a beautiful new cover and I couldn't be happier with the results.</blockquote><cite>Brandall Brake</cite></article><article className="review-card"><span className="review-mark" aria-hidden="true">“</span><blockquote>Always awesome work!!! They do an amazing job!</blockquote><cite>Ashlie Parker Harman</cite></article><article className="review-card"><span className="review-mark" aria-hidden="true">“</span><blockquote>You won't find a better cover anywhere in the United States. Truly a work of art.</blockquote><cite>Pastor Steve Epley</cite></article></div></div></section>;
 }
 
 function ServiceSchema({ service }: { service: Service }) {
