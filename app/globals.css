@@ -255,6 +255,7 @@ p { line-height: 1.7; }
 
 @media (max-width: 900px) {
   .header-inner { padding: 15px 20px; }
+  .brand { min-width: 0; }
   .nav { display: none; }
   .menu-note { display: block; color: var(--muted); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
   .container { width: min(100% - 40px, 680px); }
@@ -277,6 +278,12 @@ p { line-height: 1.7; }
   .footer-main > :first-child { grid-column: span 2; }
 }
 @media (max-width: 600px) {
+  .header-inner { flex-wrap: wrap; gap: 10px 12px; padding: 12px 16px; }
+  .brand { flex: 1 1 auto; min-width: 0; gap: 8px; }
+  .nav { display: flex; order: 3; flex: 0 0 100%; width: 100%; gap: 18px; overflow-x: auto; padding-top: 10px; border-top: 1px solid rgba(30, 28, 25, .12); scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { flex: 0 0 auto; padding: 3px 0 5px; font-size: 9px; letter-spacing: .1em; white-space: nowrap; }
+  .menu-note { display: none; }
   .header-cta { padding: 12px 13px; font-size: 9px; letter-spacing: .11em; }
   .brand-text strong { font-size: 14px; }
   .brand-text small { font-size: 7px; }
