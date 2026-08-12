@@ -31,10 +31,19 @@ test("server-renders a dedicated service page with SEO language", async () => {
   const response = await render("/bible-rebinding/");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /Custom Bible rebinding, made to be lived in/i);
+  assert.match(html, /Bible Rebinding &amp; Restoration with Real Leather|Bible Rebinding & Restoration with Real Leather/i);
   assert.match(html, /Mail-in service/i);
   assert.match(html, /application\/ld\+json/i);
   assert.match(html, /canonical/i);
+});
+
+test("server-renders the custom work service page", async () => {
+  const response = await render("/custom-work/");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Custom Bookbinding.*Note Pad Holders/i);
+  assert.match(html, /custom note pad holders/i);
+  assert.match(html, /Request a Quote/i);
 });
 
 test("server-renders the quote page and crawlable navigation", async () => {

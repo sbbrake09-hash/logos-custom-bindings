@@ -86,7 +86,7 @@ p { line-height: 1.7; }
 .maroon-band { background: var(--clay-dark); color: #fff5e8; }
 .maroon-band .eyebrow { color: #e4bf8b; }
 .maroon-band .section-header p { color: rgba(255, 245, 232, .72); }
-.service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.service-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
 .service-card { min-height: 315px; padding: 30px; position: relative; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(255, 245, 232, .22); background: rgba(255, 245, 232, .055); transition: transform .25s ease, background .25s ease; }
 .service-card:hover { transform: translateY(-5px); background: rgba(255, 245, 232, .11); }
 .service-card .card-number { color: #e4bf8b; font-size: 12px; letter-spacing: .18em; }

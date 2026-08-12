@@ -19,17 +19,17 @@ type Service = {
 export const services: Record<string, Service> = {
   "bible-rebinding": {
     slug: "bible-rebinding",
-    eyebrow: "The work we are known for",
-    title: "Custom Bible rebinding, made to be lived in.",
-    description: "Restore a faithful companion with a new leather cover, stronger structure, and details chosen for your story.",
-    intro: "A Bible that has been carried, marked, and returned to for years deserves more than a quick repair. Logos Custom Bindings rebuilds worn Bibles with durable materials and a careful respect for the pages already inside.",
-    bullets: ["Leather recovering and full rebinding", "Repairs for worn covers, spines, and corners", "Custom colors, linings, ribbons, and imprinting", "Mail-in service available throughout the United States"],
-    sectionTitle: "Preserve the pages. Reimagine the binding.",
-    sectionCopy: "Every Bible arrives with its own history. We look at the condition of the text block, the original construction, and the way you use it before recommending the right approach. The result is a working Bible that feels personal, balanced, and ready for many more years.",
+    eyebrow: "Bible rebinding & restoration",
+    title: "Bible Rebinding & Restoration with Real Leather",
+    description: "Give your cherished Bible a lasting new cover through custom Bible rebinding, leather recovering, structural reinforcement, and personalized finishing.",
+    intro: "A Bible that has been carried, marked, and returned to for years deserves more than a quick repair. Logos Custom Bindings restores worn Bibles with real leather, careful construction, and a deep respect for the pages already inside.",
+    bullets: ["Custom Bible rebinding and leather recovering", "Spine reinforcement and edge lining included with every rebind", "Real leather skins selected for a soft, durable cover", "Repairs for worn covers, spines, corners, and boards", "Custom colors, ribbons, tooled ribs, and imprinting", "Nationwide mail-in service available throughout the United States"],
+    sectionTitle: "Protect what is eternal with a binding made to last.",
+    sectionCopy: "Every Bible arrives with its own history. We look at the condition of the text block, the original construction, and the way you use it before recommending the right approach. We do not use fake bonded or so-called “genuine” leather that can crack and delaminate over time. The result is a working Bible with a soft, pliable cover that feels personal, balanced, and ready for many more years.",
     materials: [
-      { label: "01 / Structure", title: "A stronger spine", copy: "We address the places where everyday use has made the original cover tired, loose, or difficult to handle." },
-      { label: "02 / Cover", title: "Leather with character", copy: "Choose from a considered palette of premium leathers and finishes to create a cover that feels like yours." },
-      { label: "03 / Detail", title: "A personal mark", copy: "Add ribbons, imprinting, contrasting leather, or other details that make the finished Bible unmistakably personal." },
+      { label: "01 / Structure", title: "Reinforced for daily use", copy: "Spine reinforcement and edge lining add strength where everyday handling places the most stress." },
+      { label: "02 / Cover", title: "Real leather with character", copy: "Choose from premium leather skins and finishes for a cover that feels soft in the hand and grows more beautiful with use." },
+      { label: "03 / Detail", title: "A personal mark", copy: "Add ribbons, tooled ribs, imprinting, contrasting leather, or other details that make the finished Bible unmistakably yours." },
     ],
   },
   "book-restoration": {
@@ -49,10 +49,10 @@ export const services: Record<string, Service> = {
   },
   "custom-leather-bibles": {
     slug: "custom-leather-bibles",
-    eyebrow: "Made from the beginning",
-    title: "Custom leather Bibles with heirloom presence.",
-    description: "For a new Bible or a special gift, create a leather cover with the weight, color, and personal details that make it worth keeping.",
-    intro: "A custom Bible can be a meaningful gift, a milestone marker, or the beginning of a lifetime of use. Logos brings the same care to new bindings as to restoration work, with a focus on proportion, touch, and long-term durability.",
+    eyebrow: "New Bibles & meaningful gifts",
+    title: "Custom Leather Bibles with Heirloom Presence",
+    description: "Create a new custom leather Bible or meaningful gift with premium materials, personalized imprinting, ribbons, and a cover made to last.",
+    intro: "A custom leather Bible can be a meaningful gift, a milestone marker, or the beginning of a lifetime of use. Logos brings the same care to new bindings as to restoration work, with a focus on proportion, touch, and long-term durability.",
     bullets: ["Custom-made leather covers", "Personalized imprinting and design details", "Gift-ready work for weddings, graduations, and milestones", "New Bibles and journals also available through Etsy"],
     sectionTitle: "An object with a reason to stay.",
     sectionCopy: "We believe a beautiful Bible should feel good in the hand and become more meaningful with use. Your choices in leather, color, lining, ribbons, and imprinting turn a useful book into a lasting personal object.",
@@ -65,25 +65,40 @@ export const services: Record<string, Service> = {
   "hand-bound-notebooks": {
     slug: "hand-bound-notebooks",
     eyebrow: "For the blank page",
-    title: "Hand-bound notebooks for ideas worth keeping.",
-    description: "Beautifully crafted journals, notebooks, and note pads made with premium materials, vibrant colors, and personal details.",
-    intro: "A good notebook invites you to return to it. Our hand-bound journals and custom note pads are designed to feel intentional from the first page, with materials and personalization chosen around how you plan to use them.",
-    bullets: ["Hand-bound journals and notebooks", "Custom note pad holders", "Leather covers and personalized imprinting", "A wide range of colors and material combinations"],
+    title: "Hand-Bound Journals & Custom Notebooks",
+    description: "Discover hand-bound journals, custom notebooks, and note pad holders crafted with premium materials, vibrant colors, and personalized details.",
+    intro: "A good notebook invites you to return to it. Our hand-bound journals and custom notebooks are designed to feel intentional from the first page, with materials and personalization chosen around how you plan to use them.",
+    bullets: ["Hand-bound journals and custom notebooks", "Custom note pad holders", "Premium leather covers and personalized imprinting", "Vibrant colors and thoughtful material combinations", "One-of-a-kind gifts for writers, artists, and everyday note-takers"],
     sectionTitle: "A blank page, with a little more gravity.",
-    sectionCopy: "From a refined writing journal to a distinctive gift, each notebook is built as a small piece of functional craft. Tell us what you want it to hold and we can help shape the cover around it.",
+    sectionCopy: "From a refined writing journal to a distinctive gift or custom note pad holder, each piece is built as functional craft. Tell us what you want it to hold and we can help shape the cover around it.",
     materials: [
       { label: "01 / Write", title: "Made to be used", copy: "Choose a format and finish that feels right for notes, sketches, planning, reflection, or daily carry." },
       { label: "02 / Color", title: "A palette of possibilities", copy: "Pair premium materials and vibrant colors to create something calm, expressive, or completely unexpected." },
       { label: "03 / Gift", title: "Personal by design", copy: "Add an imprint or custom detail to make a journal feel like it was made for one person alone." },
     ],
   },
+  "custom-work": {
+    slug: "custom-work",
+    eyebrow: "Beyond the standard offering",
+    title: "Custom Bookbinding & Note Pad Holders",
+    description: "Have an idea that does not fit a standard service? Logos Custom Bindings creates custom note pad holders, book covers, and one-of-a-kind leather-bound work.",
+    intro: "Our capabilities are constantly growing and expanding. If you have a special project, a useful object that needs a beautiful cover, or an idea you have not seen anywhere else, reach out and discover what Logos Custom Bindings can offer.",
+    bullets: ["Custom note pad holders", "Specialized book covers and leather-bound pieces", "One-off projects for gifts, work, study, or daily use", "Material and construction recommendations built around your idea", "A personal conversation for projects outside the standard menu"],
+    sectionTitle: "Bring us the idea. We will help shape the work.",
+    sectionCopy: "Not every meaningful project arrives with a name. Share what you want the piece to do, how you want it to feel, and any details you already have in mind. We will help translate the idea into a practical, beautifully crafted object.",
+    materials: [
+      { label: "01 / Imagine", title: "Start with the use", copy: "Tell us what the piece needs to hold, protect, carry, or make easier in everyday life." },
+      { label: "02 / Develop", title: "Find the right materials", copy: "We will recommend leather, lining, color, structure, and finishing details that suit the project." },
+      { label: "03 / Make", title: "Built one at a time", copy: "Custom work is developed with the same patience, care, and attention to durability as every Logos binding." },
+    ],
+  },
   customizations: {
     slug: "customizations",
-    eyebrow: "The details make the binding",
-    title: "Custom details, chosen with intention.",
-    description: "Turn a beautiful binding into your binding with material, color, imprinting, ribbons, and other personalized options.",
-    intro: "Customization is not about adding everything. It is about finding the combination of details that makes a piece feel complete. We will help you choose options that suit the book, the way it will be used, and the feeling you want it to carry.",
-    bullets: ["Premium leather and color selection", "Imprinting and personalized lettering", "Custom book ribbons and coordinating details", "Note pad holders and other growing capabilities"],
+    eyebrow: "For Bibles, journals & more",
+    title: "Customizations for Bibles, Journals & More",
+    description: "Personalize your Bible, journal, or notebook with premium leather, colors, imprinting, custom ribbons, and finishing details chosen just for you.",
+    intro: "Customization is not about adding everything. It is about finding the combination of details that makes a piece feel complete. We help you choose options that suit the book, the way it will be used, and the feeling you want it to carry.",
+    bullets: ["Premium leather and color selection", "Imprinting, initials, names, and personalized lettering", "Custom book ribbons and coordinating details", "Tooled ribs, contrast leather, and other finishing options", "Personalized solutions for Bibles, journals, notebooks, and more"],
     sectionTitle: "Start with the feeling you want.",
     sectionCopy: "Tell us whether you are after understated, traditional, colorful, rugged, or quietly luxurious. We can translate that direction into a thoughtful set of materials and details.",
     materials: [
@@ -99,6 +114,7 @@ export const siteRoutes: Record<string, string> = {
   "book-restoration": "service",
   "custom-leather-bibles": "service",
   "hand-bound-notebooks": "service",
+  "custom-work": "service",
   customizations: "service",
   portfolio: "portfolio",
   process: "process",
@@ -162,7 +178,7 @@ function Footer() {
           <a href="/" className="brand" aria-label="Logos Custom Bindings home"><Image src="/lcb-circle-logo.png" alt="" width={44} height={44} className="brand-logo" /><span className="brand-text"><strong>Logos</strong><small>Custom Bindings</small></span></a>
           <p>Custom Bible rebinding, book restoration, and handcrafted notebooks made with care and shipped throughout the United States.</p>
         </div>
-        <div><h4>Explore</h4><div className="footer-links"><a href="/bible-rebinding/">Bible Rebinding</a><a href="/book-restoration/">Book Restoration</a><a href="/hand-bound-notebooks/">Hand-Bound Notebooks</a><a href="/portfolio/">Portfolio</a></div></div>
+        <div><h4>Explore</h4><div className="footer-links"><a href="/bible-rebinding/">Bible Rebinding & Restoration</a><a href="/hand-bound-notebooks/">Hand-Bound Journals</a><a href="/customizations/">Customizations</a><a href="/custom-work/">Custom Work</a><a href="/portfolio/">Portfolio</a></div></div>
         <div><h4>Start here</h4><div className="footer-links"><a href="/request-a-quote/">Request a Quote</a><a href="/process/">How It Works</a><a href="/faq/">Frequently Asked Questions</a><a href="/shop/">Shop on Etsy ↗</a></div></div>
       </div>
       <div className="container footer-bottom"><span>© {new Date().getFullYear()} Logos Custom Bindings</span><span>Handcrafted with patience. Built to last.</span></div>
@@ -191,7 +207,7 @@ export function HomePage() {
 
         <section className="section"><div className="container intro"><div className="intro-copy"><p className="eyebrow">A better kind of repair</p><h2>Keep the pages. Renew the feeling.</h2><p>That Bible on your shelf carries your story—the notes in the margins, the underlined verses, the worn spine from years of use. Logos Custom Bindings gives those pages a new life without erasing what they mean.</p></div><div className="intro-list"><article><span className="index">01</span><div><h3>Bible rebinding</h3><p>Custom leather covers, careful restoration, and a stronger structure for your most trusted book.</p></div></article><article><span className="index">02</span><div><h3>Book restoration</h3><p>Respectful repairs for journals, heirlooms, notebooks, and books that have earned their wear.</p></div></article><article><span className="index">03</span><div><h3>Personal details</h3><p>Choose leather, color, imprinting, ribbons, and the finishing touches that make it yours.</p></div></article></div></div></section>
 
-        <section className="section maroon-band"><div className="container"><div className="section-header"><div><p className="eyebrow">The studio offering</p><h2>Work made for a lifetime of use.</h2></div><p>Every project is considered individually, from the first look at the pages to the final detail on the cover.</p></div><div className="service-grid"><a className="service-card" href="/bible-rebinding/"><span className="card-number">01</span><div><h3>Custom Bible Rebinding</h3><p>Restore your faithful companion with leather, structure, and details chosen around your story.</p></div><span className="service-link">Explore the work ↗</span></a><a className="service-card" href="/book-restoration/"><span className="card-number">02</span><div><h3>Book & Journal Restoration</h3><p>Give worn journals and heirlooms the protection they need for the next chapter.</p></div><span className="service-link">Explore the work ↗</span></a><a className="service-card" href="/hand-bound-notebooks/"><span className="card-number">03</span><div><h3>Hand-Bound Notebooks</h3><p>Beautiful blank pages, premium materials, and personalization made for gifting or keeping.</p></div><span className="service-link">Explore the work ↗</span></a></div></div></section>
+        <section className="section maroon-band"><div className="container"><div className="section-header"><div><p className="eyebrow">The studio offering</p><h2>Work made for a lifetime of use.</h2></div><p>Every project is considered individually, from the first look at the pages to the final detail on the cover.</p></div><div className="service-grid"><a className="service-card" href="/bible-rebinding/"><span className="card-number">01</span><div><h3>Bible Rebinding & Restoration</h3><p>Restore your faithful companion with real leather, reinforced structure, and details chosen around your story.</p></div><span className="service-link">Explore the work ↗</span></a><a className="service-card" href="/hand-bound-notebooks/"><span className="card-number">02</span><div><h3>Hand-Bound Journals</h3><p>Discover custom journals and notebooks made with premium materials, vibrant colors, and personal details.</p></div><span className="service-link">Explore the work ↗</span></a><a className="service-card" href="/customizations/"><span className="card-number">03</span><div><h3>Customizations</h3><p>Make a Bible, journal, or notebook one-of-a-kind with imprinting, ribbons, color, and thoughtful finishing.</p></div><span className="service-link">Explore the work ↗</span></a><a className="service-card" href="/custom-work/"><span className="card-number">04</span><div><h3>Custom Work</h3><p>Bring us your idea for a note pad holder, custom cover, or other useful object made one piece at a time.</p></div><span className="service-link">Explore the work ↗</span></a></div></div></section>
 
         <section className="section"><div className="container"><div className="section-header"><div><p className="eyebrow">Selected work</p><h2>Made one piece at a time.</h2></div><a href="/portfolio/" className="button secondary">See the portfolio ↗</a></div><div className="portfolio-grid"><a className="project large one" href="/portfolio/"><div className="project-label"><strong>Rebound in character</strong><span>Custom Bible rebinding</span></div></a><a className="project two" href="/portfolio/"><div className="project-label"><strong>For the daily page</strong><span>Hand-bound journal</span></div></a><a className="project three" href="/portfolio/"><div className="project-label"><strong>A treasured return</strong><span>Book restoration</span></div></a></div></div></section>
 
