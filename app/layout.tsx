@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./atelier.css";
+import AtelierMotion from "./components/AtelierMotion";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://logoscustombindings.com"),
@@ -53,7 +55,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>{children}<AtelierMotion /></body>
     </html>
   );
 }

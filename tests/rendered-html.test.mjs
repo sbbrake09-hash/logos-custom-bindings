@@ -21,7 +21,7 @@ test("server-renders the premium homepage without starter content", async () => 
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   const html = await response.text();
   assert.match(html, /Custom Bible rebinding and beautifully made books/i);
-  assert.match(html, /Crafted to hold what matters/i);
+  assert.match(html, /Crafted to hold <em>what matters/i);
   assert.match(html, /Bible Rebinding &amp; Restoration|Bible Rebinding & Restoration/i);
   assert.match(html, /Hand-Bound Journals/i);
   assert.match(html, /Customizations/i);
@@ -59,11 +59,16 @@ test("server-renders the portfolio with real project photography", async () => {
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /Bible Rebinding &amp; Personalized Imprinting|Bible Rebinding & Personalized Imprinting/i);
-  assert.match(html, /Hand-Bound Journals in Color/i);
+  assert.match(html, /Leather Bindings in Color/i);
   assert.match(html, /portfolio\/bible-rebinding-imprinting\.jpg/i);
   assert.match(html, /portfolio\/textured-leather-personalization\.jpg/i);
   assert.match(html, /alt="Custom rebound Bible/i);
   assert.doesNotMatch(html, /images\.unsplash\.com/i);
+  assert.match(html, /aria-label="Filter portfolio"/);
+  assert.match(html, /aria-pressed="true"/);
+  assert.match(html, /<dialog[^>]*aria-labelledby="project-title"/);
+  assert.match(html, /href="\/portfolio\/bible-rebinding-imprinting\.jpg"/);
+  assert.doesNotMatch(html, /class="[^"]*reveal-pending/);
 });
 
 test("server-renders the quote page and crawlable navigation", async () => {
@@ -75,4 +80,18 @@ test("server-renders the quote page and crawlable navigation", async () => {
   assert.match(html, /name="email"/i);
   assert.match(html, /Your answers go directly to logoscustombindings@yahoo\.com/i);
   assert.match(html, /How it works/i);
+});
+
+test("all pages retain accessible navigation, content, and metadata", async () => {
+  for (const path of ["/", "/bible-rebinding/", "/book-restoration/", "/custom-leather-bibles/", "/hand-bound-notebooks/", "/customizations/", "/custom-work/", "/portfolio/", "/about/", "/process/", "/faq/", "/request-a-quote/", "/shop/"]) {
+    const response = await render(path);
+    assert.equal(response.status, 200, path);
+    const html = await response.text();
+    assert.match(html, /<main id="main-content"/, path);
+    assert.match(html, /href="#main-content"/, path);
+    assert.match(html, /<summary aria-label="Explore the site"/, path);
+    assert.match(html, /href="\/request-a-quote\/"/, path);
+    assert.match(html, /rel="canonical"/, path);
+    assert.equal((html.match(/<h1\b/g) ?? []).length, 1, path);
+  }
 });
