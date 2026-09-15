@@ -24,7 +24,7 @@ function uploadImage(id: string, photo: string, blob: Blob, progress: (value: nu
     xhr.onerror = xhr.ontimeout = () => reject(new Error("Upload interrupted. Your saved text is safe; retry this photo."));
     xhr.onload = () => {
       let result; try { result = JSON.parse(xhr.responseText); } catch { reject(new Error("The server could not process this photo. Please retry.")); return; }
-      if (xhr.status < 200 || xhr.status >= 300) reject(new Error(result.error || "Upload failed. Please retry.")); else resolve(result);
+      if (xhr.status < 200 || xhr.status >= 300) reject(Object.assign(new Error(result.error || "Upload failed. Please retry."), { status: xhr.status })); else resolve(result);
     };
     xhr.send(blob);
   });
@@ -109,7 +109,7 @@ export default function Studio() {
           setProject(saved); setDraft(structuredClone(saved.draft));
           setProjects(current => current?.map(p => p.id === saved!.id ? saved! : p) || [saved!]);
           mark(item.id, { status: "Saved · add alt text below", progress: 100, done: true });
-        } catch (e) { mark(item.id, { status: (e as Error).message, failed: true }); }
+        } catch (e) { mark(item.id, { status: (e as Error).message, failed: true }); if ((e as { status?: number }).status === 401) { setAuthNeeded(true); setMode("login"); } }
       }
       setMessage("Photo processing finished. Review the results below and add descriptive alt text before publishing.");
     });

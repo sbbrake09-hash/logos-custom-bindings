@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { siteOrigin } from "./gallery/origins";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "*", allow: "/", disallow: ["/admin/", "/api/gallery?private=", "/api/gallery-media*private="] },
       { userAgent: "OAI-SearchBot", allow: "/", disallow: ["/admin/", "/api/gallery?private=", "/api/gallery-media*private="] },
     ],
-    sitemap: "https://logoscustombindings.com/sitemap.xml",
-    host: "https://logoscustombindings.com",
+    sitemap: `${siteOrigin}/sitemap.xml`,
+    host: siteOrigin,
   };
 }
