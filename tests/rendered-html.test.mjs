@@ -75,6 +75,12 @@ test("server-renders the portfolio with real project photography", async () => {
 });
 
 test("project pages are crawlable and admin is excluded from indexing", async () => {
+  const sitemap = await render('/sitemap.xml');
+  assert.equal(sitemap.status, 200);
+  assert.match(await sitemap.text(), /portfolio\/bible-rebinding-imprinting\//);
+  const robots = await render('/robots.txt');
+  assert.equal(robots.status, 200);
+  assert.match(await robots.text(), /Disallow: \/admin\//);
   const response = await render('/portfolio/bible-rebinding-imprinting/');
   assert.equal(response.status, 200);
   const html = await response.text();

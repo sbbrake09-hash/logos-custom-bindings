@@ -1,6 +1,8 @@
 /** Cloudflare Worker entry point for the vinext-starter template. */
 import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } from "vinext/server/image-optimization";
 import handler from "vinext/server/app-router-entry";
+import sitemap from "../app/sitemap";
+import robots from "../app/robots";
 
 interface Env {
   ASSETS: { fetch(request: Request): Promise<Response> };
@@ -27,6 +29,22 @@ interface ExecutionContext {
 const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+
+    // Vinext's Worker does not emit Next metadata routes automatically.
+    if (url.pathname === "/sitemap.xml") {
+      try {
+        const escape = (value: string) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+        const entries = await sitemap();
+        const xml = `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${entries.map(entry => `<url><loc>${escape(entry.url)}</loc>${entry.lastModified ? `<lastmod>${new Date(entry.lastModified).toISOString()}</lastmod>` : ""}</url>`).join("")}</urlset>`;
+        return new Response(xml, { headers: { "Content-Type": "application/xml; charset=utf-8", "Cache-Control": "no-store" } });
+      } catch { return new Response("Sitemap temporarily unavailable", { status: 503, headers: { "Cache-Control": "no-store" } }); }
+    }
+    if (url.pathname === "/robots.txt") {
+      const config = robots();
+      const rules = Array.isArray(config.rules) ? config.rules : [config.rules];
+      const text = rules.map(rule => `User-agent: ${rule.userAgent || "*"}\nAllow: /\n${(Array.isArray(rule.disallow) ? rule.disallow : [rule.disallow]).filter(Boolean).map(path => `Disallow: ${path}`).join("\n")}`).join("\n\n") + `\n\nSitemap: ${config.sitemap}\n`;
+      return new Response(text, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
+    }
 
     if (url.pathname === "/_vinext/image") {
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];
