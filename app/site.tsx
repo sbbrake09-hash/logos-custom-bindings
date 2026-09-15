@@ -3,9 +3,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import QuoteForm from "./components/QuoteForm";
 import AtelierNavigation from "./components/AtelierNavigation";
-import PortfolioGallery from "./components/PortfolioGallery";
+import PortfolioGallery from "./gallery/ServerGallery";
+import { siteOrigin, studioUrl } from "./gallery/origins";
 
-const BASE_URL = "https://logoscustombindings.com";
+const BASE_URL = siteOrigin;
 type Service = {
   slug: string;
   eyebrow: string;
@@ -161,12 +162,12 @@ function Footer() {
         <div><h4>Explore</h4><div className="footer-links"><a href="/bible-rebinding/">Bible Rebinding & Restoration</a><a href="/hand-bound-notebooks/">Hand-Bound Journals</a><a href="/customizations/">Customizations</a><a href="/custom-work/">Custom Work</a><a href="/portfolio/">Portfolio</a></div></div>
         <div><h4>Start here</h4><div className="footer-links"><a href="/request-a-quote/">Request a Quote</a><a href="/process/">How It Works</a><a href="/faq/">Frequently Asked Questions</a><a href="/shop/">Shop on Etsy ↗</a></div></div>
       </div>
-      <div className="container footer-bottom"><span>© {new Date().getFullYear()} Logos Custom Bindings</span><span>Handcrafted with patience. Built to last.</span></div>
+      <div className="container footer-bottom"><span>© {new Date().getFullYear()} Logos Custom Bindings</span><span>Handcrafted with patience. Built to last.</span><a href={studioUrl}>Studio login</a></div>
     </footer>
   );
 }
 
-function Shell({ children, schema }: { children: React.ReactNode; schema?: React.ReactNode }) {
+export function Shell({ children, schema }: { children: React.ReactNode; schema?: React.ReactNode }) {
   return <><AtelierNavigation />{children}{schema}{<Footer />}</>;
 }
 

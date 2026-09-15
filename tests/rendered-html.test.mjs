@@ -1,5 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { fixture } from "./gallery-fixture.mjs";
+const fetchOriginal = globalThis.fetch;
+globalThis.fetch = (input, init) => String(input) === "https://logos-custom-bindings.netlify.app/api/gallery" ? Promise.resolve(Response.json(fixture)) : fetchOriginal(input, init);
 
 const workerUrl = new URL("../dist/server/index.js", import.meta.url);
 
@@ -60,15 +63,28 @@ test("server-renders the portfolio with real project photography", async () => {
   const html = await response.text();
   assert.match(html, /Bible Rebinding &amp; Personalized Imprinting|Bible Rebinding & Personalized Imprinting/i);
   assert.match(html, /Leather Bindings in Color/i);
-  assert.match(html, /portfolio\/bible-rebinding-imprinting\.jpg/i);
-  assert.match(html, /portfolio\/textured-leather-personalization\.jpg/i);
+  assert.match(html, /api\/gallery-media\?project=bible-rebinding-imprinting/i);
+  assert.match(html, /api\/gallery-media\?project=textured-leather-personalization/i);
   assert.match(html, /alt="Custom rebound Bible/i);
   assert.doesNotMatch(html, /images\.unsplash\.com/i);
   assert.match(html, /aria-label="Filter portfolio"/);
   assert.match(html, /aria-pressed="true"/);
   assert.match(html, /<dialog[^>]*aria-labelledby="project-title"/);
-  assert.match(html, /href="\/portfolio\/bible-rebinding-imprinting\.jpg"/);
+  assert.match(html, /href="\/portfolio\/bible-rebinding-imprinting\/"/);
   assert.doesNotMatch(html, /class="[^"]*reveal-pending/);
+});
+
+test("project pages are crawlable and admin is excluded from indexing", async () => {
+  const response = await render('/portfolio/bible-rebinding-imprinting/');
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /A project story describing the leather cover/);
+  assert.match(html, /BreadcrumbList/);
+  assert.match(html, /ImageObject/);
+  assert.match(html, /og:image/);
+  const admin = await (await render('/admin/')).text();
+  assert.match(admin, /noindex/);
+  assert.doesNotMatch(admin, /Private changed title/);
 });
 
 test("server-renders the quote page and crawlable navigation", async () => {

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./atelier.css";
 import AtelierMotion from "./components/AtelierMotion";
+import StudioCallback from "./components/StudioCallback";
+import "./gallery/gallery.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://logoscustombindings.com"),
@@ -55,7 +57,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>{children}<AtelierMotion /></body>
+      <body>{children}<AtelierMotion /><StudioCallback /></body>
     </html>
   );
 }

@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { generateRouteMetadata, RoutePage, siteRoutes } from "../site";
+export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
   return Object.keys(siteRoutes)
