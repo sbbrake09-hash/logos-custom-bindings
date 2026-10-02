@@ -4,6 +4,7 @@ import "./atelier.css";
 import AtelierMotion from "./components/AtelierMotion";
 import StudioCallback from "./components/StudioCallback";
 import "./gallery/gallery.css";
+import "./glass-buttons.css";
 import { siteOrigin } from "./gallery/origins";
 
 export const metadata: Metadata = {

@@ -1,0 +1,140 @@
+/* Shared optical surface. Existing controls keep their sizing and semantics.
+   Custom controls can use .glass-button plus --tinted or --clear modifiers. */
+:root {
+  --glass-fill: 255, 255, 255;
+  --glass-light: 255, 255, 255;
+  --glass-top-opacity: .2;
+  --glass-bottom-opacity: .07;
+  --glass-light-opacity: .28;
+  --glass-text: var(--ink, #201d19);
+  --glass-edge: rgba(99, 83, 65, .32);
+}
+:root :is(.glass-button, .button, .header-cta, .gallery-filters button,
+  .dialog-top button, .dialog-pagination button, .alternate-image,
+  .studio button:not(.studio-link, .story-photo-button):not(.gallery-thumbnails button)) {
+  position: relative;
+  isolation: isolate;
+  border-radius: 12px;
+  border-color: var(--glass-edge);
+  color: var(--glass-text);
+  background:
+    radial-gradient(ellipse 65% 100% at 50% -32%, rgba(var(--glass-light), var(--glass-light-opacity)), transparent 80%),
+    linear-gradient(180deg, rgba(255,255,255,.13), rgba(255,255,255,.025) 49%, rgba(0,0,0,.025)),
+    linear-gradient(180deg, rgba(var(--glass-fill), var(--glass-top-opacity)), rgba(var(--glass-fill), var(--glass-bottom-opacity)));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -1px 0 rgba(0,0,0,.08), 0 3px 8px rgba(34,24,16,.09);
+  -webkit-backdrop-filter: blur(7px) saturate(1.15);
+  backdrop-filter: blur(7px) saturate(1.15);
+  transform: none;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+/* Oxidized copper light over the existing oxblood primary color. */
+:root :is(.glass-button--tinted, .button:not(.secondary), .header-cta) {
+  --glass-fill: 83, 37, 31;
+  --glass-light: 240, 151, 113;
+  --glass-top-opacity: .9;
+  --glass-bottom-opacity: .96;
+  --glass-light-opacity: .95;
+  --glass-text: #fffaf3;
+  --glass-edge: rgba(180, 119, 94, .7);
+}
+
+/* Selected filters remain charcoal; studio actions keep their warm ink. */
+:root .gallery-filters button[aria-pressed="true"] {
+  --glass-fill: 32, 29, 25;
+  --glass-light: 202, 168, 112;
+  --glass-top-opacity: .89;
+  --glass-bottom-opacity: .96;
+  --glass-light-opacity: .85;
+  --glass-text: #fffaf3;
+  --glass-edge: rgba(169, 146, 111, .65);
+}
+:root .studio .button {
+  --glass-fill: 48, 45, 36;
+  --glass-light: 221, 180, 115;
+  --glass-edge: rgba(151, 128, 87, .7);
+}
+:root .studio button[aria-pressed="true"]:not(.gallery-thumbnails button, .gallery-filters button) {
+  --glass-fill: 218, 201, 165;
+  --glass-light: 255, 232, 175;
+  --glass-top-opacity: .68;
+  --glass-bottom-opacity: .82;
+  --glass-light-opacity: .9;
+  --glass-text: #28241c;
+  --glass-edge: #8a7244;
+}
+:root .glass-button--clear {
+  --glass-fill: 255, 255, 255;
+  --glass-light: 255, 255, 255;
+  --glass-top-opacity: .2;
+  --glass-bottom-opacity: .07;
+  --glass-light-opacity: .28;
+  --glass-text: var(--ink, #201d19);
+  --glass-edge: rgba(99, 83, 65, .32);
+}
+
+/* Reflections are confined above the label; neither layer receives input. */
+:root :is(.glass-button, .button, .header-cta, .gallery-filters button,
+  .dialog-top button, .dialog-pagination button, .alternate-image,
+  .studio button:not(.studio-link, .story-photo-button):not(.gallery-thumbnails button))::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  left: 17%;
+  right: 17%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(var(--glass-light),.9) 35%, #fff 50%, rgba(var(--glass-light),.9) 65%, transparent);
+  opacity: .7;
+  transition: opacity 180ms ease;
+}
+:root :is(.glass-button, .button, .header-cta, .gallery-filters button,
+  .dialog-top button, .dialog-pagination button, .alternate-image,
+  .studio button:not(.studio-link, .story-photo-button):not(.gallery-thumbnails button))::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  inset: 1px 2px auto;
+  height: 28%;
+  border-radius: 10px 10px 50% 50%;
+  background: radial-gradient(ellipse at 50% 0, rgba(var(--glass-light),.21), transparent 72%);
+  opacity: .65;
+  transition: opacity 180ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  :root :is(.glass-button, .button, .header-cta, .gallery-filters button,
+    .dialog-top button, .dialog-pagination button, .alternate-image,
+    .studio button:not(.studio-link, .story-photo-button):not(.gallery-thumbnails button)):not(:disabled, [aria-disabled="true"]):hover {
+    transform: translateY(-1px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.7), inset 0 -1px 0 rgba(0,0,0,.1), 0 5px 12px rgba(34,24,16,.13);
+  }
+  :root :is(.glass-button, .button, .header-cta, .gallery-filters button,
+    .dialog-top button, .dialog-pagination button, .alternate-image,
+    .studio button:not(.studio-link, .story-photo-button):not(.gallery-thumbnails button)):not(:disabled, [aria-disabled="true"]):hover::before,
+  :root :is(.glass-button, .button, .header-cta, .gallery-filters button,
+    .dialog-top button, .dialog-pagination button, .alternate-image,
+    .studio button:not(.studio-link, .story-photo-button):not(.gallery-thumbnails button)):not(:disabled, [aria-disabled="true"]):hover::after { opacity: 1; }
+}
+:root :is(.glass-button, .button, .header-cta, .gallery-filters button,
+  .dialog-top button, .dialog-pagination button, .alternate-image,
+  .studio button:not(.studio-link, .story-photo-button):not(.gallery-thumbnails button)):is(:active, :disabled, [aria-disabled="true"]) { transform: none; }
+
+/* Existing focus outlines and disabled opacity/cursors remain in force. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root :is(.glass-button, .button, .header-cta, .gallery-filters button,
+    .dialog-top button, .dialog-pagination button, .alternate-image,
+    .studio button:not(.studio-link, .story-photo-button):not(.gallery-thumbnails button)) { background-color: rgba(var(--glass-fill), .8); }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root :is(.glass-button, .button, .header-cta, .gallery-filters button,
+    .dialog-top button, .dialog-pagination button, .alternate-image,
+    .studio button:not(.studio-link, .story-photo-button):not(.gallery-thumbnails button)) { transform: none !important; transition: none; }
+}
+@media (forced-colors: active) {
+  :root :is(.glass-button, .button, .header-cta, .gallery-filters button,
+    .dialog-top button, .dialog-pagination button, .alternate-image,
+    .studio button:not(.studio-link, .story-photo-button):not(.gallery-thumbnails button)) {
+    background: ButtonFace; color: ButtonText; border: 1px solid ButtonText; box-shadow: none; backdrop-filter: none;
+  }
+  :root :is(.gallery-filters button, .studio button)[aria-pressed="true"] { border: 2px solid Highlight; }
+}
