@@ -132,7 +132,7 @@ export default function Studio() {
     <small>Invitation-only access. Need help? Contact the person who manages your website.</small>
   </form>;
 
-  return <div className="studio"><header className="studio-header"><a className="studio-brand" href="/"><img src="/lcb-circle-logo.png" width="46" height="46" alt="" /><span>Logos <small>Gallery Studio</small></span></a><div className="studio-actions"><a href="/portfolio/">View website ↗</a>{signedIn && <button disabled={busy} onClick={() => { if (dirty && !confirm("Leave unsaved edits? Your last saved draft is safe.")) return; void run(async () => { await logout(); setProject(null); setDraft(null); setProjects(null); setDirty(false); setUploads([]); }); }}>Sign out</button>}</div></header>
+  return <div className="studio"><header className="studio-header"><a className="studio-brand" href="/"><img className="studio-emblem" src="/logos-bible-rebinder-emblem.png" width="1253" height="589" alt="Logos The Bible Rebinder" /><span className="studio-brand-label">Gallery Studio</span></a><div className="studio-actions"><a href="/portfolio/">View website ↗</a>{signedIn && <button disabled={busy} onClick={() => { if (dirty && !confirm("Leave unsaved edits? Your last saved draft is safe.")) return; void run(async () => { await logout(); setProject(null); setDraft(null); setProjects(null); setDirty(false); setUploads([]); }); }}>Sign out</button>}</div></header>
     <main id="main-content" className="studio-main">
       {error && <div className="studio-alert" role="alert">{error}</div>}{message && <div className="studio-notice" role="status">{message}</div>}
       {!ready ? <p role="status">Opening your studio…</p> : mirror ? <div className="studio-auth"><h1>Your gallery studio.</h1><p>Editing lives on the main website. Published projects appear here automatically, too.</p><a className="button" href={studioUrl}>Open Johnny’s studio ↗</a></div> : (!signedIn || mode === "password" || authNeeded) ? authForm : <>
@@ -151,6 +151,6 @@ export default function Studio() {
           <dialog className="studio-preview" ref={previewDialog} onClose={() => setPreview(false)} onCancel={() => setPreview(false)} aria-label="Private project preview">{preview && <><div className="studio-heading"><p className="eyebrow">Private draft preview · not published</p><button autoFocus onClick={() => setPreview(false)}>Close preview ×</button></div><PortfolioGallery projects={[{ ...draft, id: project.id, slug: project.slug, publishedAt: project.publishedAt || project.updatedAt, updatedAt: project.updatedAt }]} privateMedia detail /></>}</dialog>
         </>}
       </>}
-    </main><footer className="studio-footer">Logos Custom Bindings · Made one piece at a time.</footer>
+    </main><footer className="studio-footer">Logos The Bible Rebinder · Made one piece at a time.</footer>
   </div>;
 }

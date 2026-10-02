@@ -24,7 +24,10 @@ test("server-renders the premium homepage without starter content", async () => 
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   const html = await response.text();
   assert.match(html, /Custom Bible rebinding and beautifully made books/i);
-  assert.match(html, /Crafted to hold <em>what matters/i);
+  assert.match(html, /Logos The Bible Rebinder/);
+  assert.match(html, /logos-bible-rebinder-emblem\.png/);
+  assert.match(html, /<h1[^>]*>.*Custom Bible Rebinding and Restoration/);
+  assert.doesNotMatch(html, /Crafted to hold|lcb-circle-logo\.png/);
   assert.match(html, /Bible Rebinding &amp; Restoration|Bible Rebinding & Restoration/i);
   assert.match(html, /Hand-Bound Journals/i);
   assert.match(html, /Customizations/i);

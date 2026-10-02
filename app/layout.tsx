@@ -5,17 +5,18 @@ import AtelierMotion from "./components/AtelierMotion";
 import StudioCallback from "./components/StudioCallback";
 import "./gallery/gallery.css";
 import "./glass-buttons.css";
+import "./brand.css";
 import { siteOrigin } from "./gallery/origins";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteOrigin),
   title: {
-    default: "Logos Custom Bindings | Bible Rebinding & Handcrafted Books",
-    template: "%s | Logos Custom Bindings",
+    default: "Logos The Bible Rebinder | Bible Rebinding & Handcrafted Books",
+    template: "%s | Logos The Bible Rebinder",
   },
   description:
     "Custom Bible rebinding and restoration, hand-bound journals, Bible and journal customizations, and one-of-a-kind custom work crafted with care and shipped nationwide.",
-  applicationName: "Logos Custom Bindings",
+  applicationName: "Logos The Bible Rebinder",
   keywords: [
     "Bible rebinding",
     "custom Bible rebinding",
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: `${siteOrigin}/`,
-    siteName: "Logos Custom Bindings",
+    siteName: "Logos The Bible Rebinder",
     title: "Custom Bible Rebinding & Handcrafted Book Restoration",
     description:
       "Thoughtfully made leather bindings for Bibles, journals, notebooks, and treasured books.",
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Logos Custom Bindings | Crafted to Last",
+    title: "Logos The Bible Rebinder | Crafted to Last",
     description:
       "Custom Bible rebinding and handcrafted journals, made with lasting materials and care.",
     images: [
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
     ],
   },
   robots: { index: true, follow: true },
-  icons: { icon: "/lcb-circle-logo.png" },
+  icons: { icon: "/logos-bible-rebinder-icon.png", apple: "/logos-bible-rebinder-icon.png" },
 };
 
 export default function RootLayout({

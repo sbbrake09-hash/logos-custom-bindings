@@ -42,9 +42,8 @@ export default function AtelierNavigation() {
   return <header className="site-header atelier-header">
     <a className="skip-link" href="#main-content">Skip to content</a>
     <div className="header-inner">
-      <a href="/" className="brand" aria-label="Logos Custom Bindings home">
-        <Image src="/lcb-circle-logo.png" alt="" width={48} height={48} unoptimized={process.env.NODE_ENV === "development"} className="brand-logo" />
-        <span className="brand-text"><strong>Logos</strong><small>Custom Bindings</small></span>
+      <a href="/" className="brand" aria-label="Logos The Bible Rebinder home">
+        <Image src="/logos-bible-rebinder-emblem.png" alt="" width={1253} height={589} sizes="(max-width: 600px) 130px, 180px" unoptimized={process.env.NODE_ENV === "development"} className="brand-emblem" />
       </a>
       <nav className="desktop-navigation" aria-label="Primary navigation">
         {links.slice(0, 4).map(([label, href]) => <a key={href} href={href} aria-current={pathname?.replace(/\/$/, "") === href.replace(/\/$/, "") ? "page" : undefined}>{label}</a>)}
@@ -53,7 +52,7 @@ export default function AtelierNavigation() {
       <details ref={menu} className="atelier-menu">
         <summary aria-label="Explore the site"><span className="menu-word">Explore</span><span className="menu-lines" aria-hidden="true"><i /><i /></span></summary>
         <div className="menu-panel">
-          <div className="menu-panel-intro"><span className="eyebrow">Logos Custom Bindings</span><p>A book worth keeping.<br /><em>A binding worth making.</em></p></div>
+          <div className="menu-panel-intro"><span className="eyebrow">Logos The Bible Rebinder</span><p>A book worth keeping.<br /><em>A binding worth making.</em></p></div>
           <nav aria-label="Explore the site" className="menu-main" onClick={close}>
             {links.map(([label, href], index) => <a href={href} key={href}><span>0{index + 1}</span>{label}</a>)}
             <a href="/shop/"><span>06</span>The Etsy collection</a>

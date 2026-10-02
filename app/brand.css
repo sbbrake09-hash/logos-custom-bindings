@@ -1,0 +1,40 @@
+/* Leather, antique gold, and parchment: the supplied Logos emblem sets the tone. */
+:root {
+  --ink: #281c14;
+  --paper: #faf7f0;
+  --cream: #eee4d3;
+  --sand: #e4d5bf;
+  --muted: #6a5c4b;
+  --clay: #704321;
+  --clay-dark: #39251a;
+  --brass: #a77a2b;
+  --line: rgba(66, 43, 24, .18);
+}
+::selection { background: #ddbd7a; color: var(--ink); }
+.atelier-header { background: #faf7f0f5; }
+.brand { min-width: 0; }
+.brand-emblem { display: block; width: 180px; max-width: 100%; height: auto; object-fit: contain; flex-shrink: 1; }
+.footer .brand-emblem { width: 230px; }
+.hero { background: radial-gradient(ellipse at 15% 20%, #fffaf1, transparent 70%), var(--cream); }
+.hero-copy { padding-inline: clamp(36px, 4.8vw, 76px); }
+.hero-copy .hero-brand { width: 100%; max-width: 640px; font-size: inherit; line-height: 1; }
+.hero-emblem { display: block; width: 100%; height: auto; }
+.hero-copy .lead { color: var(--muted); }
+.hero-note i { background: linear-gradient(90deg, var(--brass), #d4b269); }
+.maroon-band { background: linear-gradient(115deg, #4b301e, var(--clay-dark) 70%); }
+.reviews-section { background: #eae0cf; }
+.review-provenance { margin: 26px 0 0; color: var(--muted); font-size: 12px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.studio-brand .studio-emblem { width: 160px; height: auto; }
+.studio-brand-label { font: 12px/1.4 Arial, sans-serif; text-transform: uppercase; letter-spacing: .1em; max-width: 70px; }
+@media (max-width: 900px) { .hero-copy { padding-inline: 32px; } .hero-copy .hero-brand { max-width: 640px; } }
+@media (max-width: 600px) {
+  .atelier-header .brand-emblem { width: 130px; }
+  .hero-copy { padding-inline: 24px; }
+  .hero-copy .eyebrow { font-size: 10px; letter-spacing: .14em; }
+  .hero-copy .lead { margin-top: 24px; }
+  .studio-brand { flex-direction: column; align-items: flex-start; }
+  .studio-brand .studio-emblem { width: 130px; height: auto; }
+  .studio-brand-label { max-width: none; font-size: 10px; }
+}
+@media (max-width: 359px) { .atelier-header .brand-emblem { width: 110px; } }

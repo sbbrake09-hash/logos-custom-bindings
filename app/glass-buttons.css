@@ -28,15 +28,15 @@
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
-/* Oxidized copper light over the existing oxblood primary color. */
+/* Antique-gold light over a leather-brown glass surface. */
 :root :is(.glass-button--tinted, .button:not(.secondary), .header-cta) {
-  --glass-fill: 83, 37, 31;
-  --glass-light: 240, 151, 113;
+  --glass-fill: 76, 44, 24;
+  --glass-light: 232, 184, 88;
   --glass-top-opacity: .9;
   --glass-bottom-opacity: .96;
   --glass-light-opacity: .95;
   --glass-text: #fffaf3;
-  --glass-edge: rgba(180, 119, 94, .7);
+  --glass-edge: rgba(181, 137, 67, .7);
 }
 
 /* Selected filters remain charcoal; studio actions keep their warm ink. */
@@ -50,8 +50,8 @@
   --glass-edge: rgba(169, 146, 111, .65);
 }
 :root .studio .button {
-  --glass-fill: 48, 45, 36;
-  --glass-light: 221, 180, 115;
+  --glass-fill: 58, 39, 25;
+  --glass-light: 232, 184, 88;
   --glass-edge: rgba(151, 128, 87, .7);
 }
 :root .studio button[aria-pressed="true"]:not(.gallery-thumbnails button, .gallery-filters button) {

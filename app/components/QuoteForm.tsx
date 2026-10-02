@@ -32,7 +32,7 @@ export default function QuoteForm() {
       if (!response.ok) throw new Error("Submission failed");
       form.reset();
       setStatus("success");
-      setMessage("Thank you. Your project details are on their way to Logos Custom Bindings. We’ll be in touch soon.");
+      setMessage("Thank you. Your project details are on their way to Logos The Bible Rebinder. We’ll be in touch soon.");
     } catch {
       setStatus("error");
       setMessage("Something went wrong while sending your request. Please try again or email logoscustombindings@yahoo.com directly.");
@@ -51,7 +51,7 @@ export default function QuoteForm() {
       onSubmit={handleSubmit}
     >
       <input type="hidden" name="form-name" value="custom-binding-quote" />
-      <input type="hidden" name="subject" data-remove-prefix value="New Logos Custom Bindings quote request" />
+      <input type="hidden" name="subject" data-remove-prefix value="New Logos The Bible Rebinder quote request" />
       <p className="honeypot" aria-hidden="true"><label>Don’t fill this out: <input name="bot-field" tabIndex={-1} autoComplete="off" /></label></p>
 
       <fieldset>
