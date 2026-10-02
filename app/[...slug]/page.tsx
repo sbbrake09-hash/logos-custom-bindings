@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { generateRouteMetadata, RoutePage, siteRoutes } from "../site";
 export const dynamic = "force-dynamic";
 
@@ -24,6 +24,7 @@ export default async function NestedPage({
 }) {
   const { slug } = await params;
   const route = slug.join("/");
+  if (route === "shop") permanentRedirect("/request-a-quote/");
   if (!siteRoutes[route]) notFound();
   return <RoutePage route={route} />;
 }

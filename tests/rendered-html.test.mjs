@@ -108,7 +108,7 @@ test("server-renders the quote page and crawlable navigation", async () => {
 });
 
 test("all pages retain accessible navigation, content, and metadata", async () => {
-  for (const path of ["/", "/bible-rebinding/", "/book-restoration/", "/custom-leather-bibles/", "/hand-bound-notebooks/", "/customizations/", "/custom-work/", "/portfolio/", "/about/", "/process/", "/faq/", "/request-a-quote/", "/shop/"]) {
+  for (const path of ["/", "/bible-rebinding/", "/book-restoration/", "/custom-leather-bibles/", "/hand-bound-notebooks/", "/customizations/", "/custom-work/", "/portfolio/", "/about/", "/process/", "/faq/", "/request-a-quote/"]) {
     const response = await render(path);
     assert.equal(response.status, 200, path);
     const html = await response.text();
@@ -118,5 +118,14 @@ test("all pages retain accessible navigation, content, and metadata", async () =
     assert.match(html, /href="\/request-a-quote\/"/, path);
     assert.match(html, /rel="canonical"/, path);
     assert.equal((html.match(/<h1\b/g) ?? []).length, 1, path);
+    assert.doesNotMatch(html, /etsy|href="\/shop\//i, path);
   }
+});
+
+test("retired collection redirects to quotes and is absent from the sitemap", async () => {
+  const response = await render("/shop/");
+  assert.equal(response.status, 308);
+  assert.equal(new URL(response.headers.get("location"), "http://localhost").href, "http://localhost/request-a-quote/");
+  const sitemap = await (await render("/sitemap.xml")).text();
+  assert.doesNotMatch(sitemap, /\/shop\/|etsy/i);
 });

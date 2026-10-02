@@ -35,7 +35,7 @@ If another device saved a newer version, the studio blocks your stale save. Keep
 - Private reads and mutations require a fresh confirmed invited Identity account and the editor role. Mutations require a matching Origin. Draft photographs are never included in the public feed; public image requests must reference a currently published photo. All private responses use `no-store`.
 - Photo originals stay on the uploader’s device. Canvas export and server-side re-encoding strip metadata. Full images are at most 2400px; thumbnails at most 800px. The server validates content and pixel count, not just filenames.
 - `NEXT_PUBLIC_GALLERY_ORIGIN` controls the trusted Netlify origin for both builds; `NEXT_PUBLIC_SITE_ORIGIN` controls canonical URLs. Update both hosts when adopting a domain. Netlify Identity email links and redirect allowlists must also use that domain. Never forward an invitation hash to a different origin.
-- Gallery editing does not modify the quote form or Etsy storefront.
+- Gallery editing does not modify the quote form.
 - HEIC conversion uses the unmodified `heic-to` package (LGPL-3.0) on demand in the editor only. Source and license: https://github.com/hoppergee/heic-to . Its bundled decoder derives from https://github.com/strukturag/libheif . The npm lockfile pins the distributed source version; replacement builds can be made by replacing this dependency and rebuilding the site.
 
 ## Verification

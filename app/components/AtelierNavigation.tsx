@@ -55,7 +55,6 @@ export default function AtelierNavigation() {
           <div className="menu-panel-intro"><span className="eyebrow">Logos The Bible Rebinder</span><p>A book worth keeping.<br /><em>A binding worth making.</em></p></div>
           <nav aria-label="Explore the site" className="menu-main" onClick={close}>
             {links.map(([label, href], index) => <a href={href} key={href}><span>0{index + 1}</span>{label}</a>)}
-            <a href="/shop/"><span>06</span>The Etsy collection</a>
           </nav>
           <nav aria-label="Binding services" className="menu-services" onClick={close}>
             <p className="eyebrow">Made around you</p>
