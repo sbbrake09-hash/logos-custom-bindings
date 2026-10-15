@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 const links = [
-  ["The services", "/#services"], ["Selected work", "/portfolio/"],
+  ["The services", "/#services"], ["Portfolio", "/portfolio/"],
   ["Our story", "/about/"], ["The process", "/process/"], ["Questions & answers", "/faq/"],
 ];
 const serviceLinks = [

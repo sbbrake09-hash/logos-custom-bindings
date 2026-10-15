@@ -179,7 +179,7 @@ export function HomePage() {
             <p className="eyebrow">Bible rebinding & restoration · hand-bound journals · customizations · custom work</p>
             <h1 className="hero-brand"><span className="sr-only">Logos The Bible Rebinder — Custom Bible Rebinding and Restoration</span><Image src="/logos-bible-rebinder-emblem.png" alt="" width={1253} height={589} sizes="(max-width: 760px) 85vw, (max-width: 1100px) 70vw, 42vw" priority unoptimized={process.env.NODE_ENV === "development"} className="hero-emblem" /></h1>
             <p className="lead">Custom Bible rebinding and beautifully made books for the stories, ideas, and faith you return to again and again.</p>
-            <div className="hero-actions"><a className="button" href="/request-a-quote/">Start your project <span aria-hidden="true">↗</span></a><a className="button secondary" href="/portfolio/">View past work</a></div>
+            <div className="hero-actions"><a className="button" href="/request-a-quote/">Start your project <span aria-hidden="true">↗</span></a><a className="button secondary" href="/portfolio/">Our Work</a></div>
             <div className="hero-note"><i /> <span>Nationwide mail-in craftsmanship · Led by Johnny</span></div>
             <a href="#services" className="hero-discover">Explore the craft <span aria-hidden="true">↓</span></a>
           </div>
@@ -192,7 +192,7 @@ export function HomePage() {
 
         <ReviewsSection />
 
-        <section className="section"><div className="container"><div className="section-header"><div><p className="eyebrow">Selected work</p><h2>Made one piece at a time.</h2></div><a href="/portfolio/" className="button secondary">See the portfolio ↗</a></div><PortfolioGallery featured /></div></section>
+        <section className="section"><div className="container"><div className="section-header"><div><p className="eyebrow">Our Work</p><h2>Made one piece at a time.</h2></div><a href="/portfolio/" className="button secondary">Our Work ↗</a></div><PortfolioGallery featured /></div></section>
 
         <section className="section compact" style={{ background: "#ede5da" }}><div className="container quote-strip"><div><p className="eyebrow">Your book has a next chapter</p><h2>Tell us what you want to keep—and what you want to change.</h2><p>Share a few details and photos. We will help you find the right approach for your project.</p></div><a href="/request-a-quote/" className="button">Request a Quote <span aria-hidden="true">↗</span></a></div></section>
       </main>
@@ -217,7 +217,7 @@ function PortfolioPage() {
 }
 
 function PortfolioPageReal() {
-  return <Shell><main id="main-content"><section className="page-hero"><div className="container"><Breadcrumbs current="Portfolio" /><p className="eyebrow">Past work</p><h1>Objects made to become part of the story.</h1><p className="lead">Explore real examples of custom Bible rebinding, leather Bible covers, personalized imprinting, hand-bound journals, and carefully finished bookbinding work.</p></div></section><section className="section"><div className="container"><PortfolioGallery /><div className="quote-strip rule"><div><p className="eyebrow">Your project will be different</p><h2>Bring us the idea, the heirloom, or the worn favorite.</h2></div><a className="button" href="/request-a-quote/">Start a conversation</a></div></div></section></main></Shell>;
+  return <Shell><main id="main-content"><section className="page-hero"><div className="container"><Breadcrumbs current="Portfolio" /><p className="eyebrow">Our Work</p><h1>Objects made to become part of the story.</h1><p className="lead">Explore real examples of custom Bible rebinding, leather Bible covers, personalized imprinting, hand-bound journals, and carefully finished bookbinding work.</p></div></section><section className="section"><div className="container"><PortfolioGallery /><div className="quote-strip rule"><div><p className="eyebrow">Your project will be different</p><h2>Bring us the idea, the heirloom, or the worn favorite.</h2></div><a className="button" href="/request-a-quote/">Start a conversation</a></div></div></section></main></Shell>;
 }
 
 function ProcessPage() {
