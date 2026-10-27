@@ -1,0 +1,2 @@
+# Preserve the image URL, width and quality explicitly before SSR routing.
+/_next/image/ url=:image w=:width q=:quality /.netlify/images?url=:image&w=:width&q=:quality 200!

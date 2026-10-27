@@ -1,5 +1,5 @@
 import { getStore } from "@netlify/blobs";
-import { getUser, verifyRequestOrigin } from "@netlify/identity";
+import { getIdentityConfig, verifyRequestOrigin } from "@netlify/identity";
 import { categories, type Project, type Revision, type Photo } from "../../../app/gallery/model";
 
 export class HttpError extends Error { constructor(public status: number, message: string) { super(message); } }
@@ -9,9 +9,25 @@ export const idPattern = /^[a-z0-9][a-z0-9-]{5,79}$/;
 export function validId(value: unknown): asserts value is string { if (typeof value !== "string" || !idPattern.test(value)) throw new HttpError(400, "Invalid project or photo identifier."); }
 export async function editor(request: Request) {
   if (request.method !== "GET") verifyRequestOrigin(request);
-  const user = await getUser();
-  if (!user?.confirmedAt || !user.invitedAt) throw new HttpError(401, "Please sign in again. Your saved drafts are safe.");
-  if (user.email?.toLowerCase() !== "logoscustombindings@yahoo.com" || !user.roles?.includes("gallery-editor")) throw new HttpError(403, "This account does not have gallery editing access.");
+  // The SDK's server lookup prefers the runtime operator token over nf_jwt.
+  // Verify the visitor's own token with Identity before reading its claims.
+  // Decoding alone never authenticates a visitor.
+  const token = request.headers.get("cookie")?.split(";").map(value => value.trim()).find(value => value.startsWith("nf_jwt="))?.slice(7);
+  if (!token) throw new HttpError(401, "Please sign in again. Your saved drafts are safe.");
+  const identity = getIdentityConfig();
+  if (!identity?.url) throw new Error("Identity unavailable");
+  const response = await fetch(`${identity.url}/user`, { headers: { Authorization: `Bearer ${token}` }, signal: AbortSignal.timeout(10000) });
+  if (response.status === 401 || response.status === 403) throw new HttpError(401, "Please sign in again. Your saved drafts are safe.");
+  if (!response.ok) throw new Error("Identity unavailable");
+  const user = await response.json();
+  if (!user?.confirmed_at) throw new HttpError(401, "Please sign in again. Your saved drafts are safe.");
+  let claims;
+  try { claims = JSON.parse(Buffer.from(token.split(".")[1], "base64url").toString()); }
+  catch { throw new HttpError(401, "Please sign in again. Your saved drafts are safe."); }
+  // Only Identity-verified, server-managed token roles count. Changes become
+  // effective on the next login or refresh, as intended by Identity sessions.
+  const roles = claims.app_metadata?.roles;
+  if (claims.sub !== user.id || !["logoscustombindings@yahoo.com", "bbrake@senecar7.com"].includes(user.email?.toLowerCase() || "") || !Array.isArray(roles) || !roles.includes("gallery-editor")) throw new HttpError(403, "This account does not have gallery editing access.");
   return user;
 }
 export function json(value: unknown, status = 200) { return Response.json(value, { status, headers: { "Cache-Control": "private, no-store", "X-Content-Type-Options": "nosniff", "X-Robots-Tag": "noindex", "Vary": "Cookie, Origin" } }); }

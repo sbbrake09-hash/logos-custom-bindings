@@ -20,13 +20,17 @@ const { default: gallery } = await import(pathToFileURL(join(process.cwd(), '.ne
 const { default: media } = await import(pathToFileURL(join(process.cwd(), '.netlify/gallery-tests/gallery-media.mjs')));
 const realFetch = globalThis.fetch;
 let auth = 'editor';
+const visitorToken = () => 'test.' + Buffer.from(JSON.stringify({ sub: 'local-editor', app_metadata: { roles: auth === 'wrong-role' ? [] : ['gallery-editor'] }, user_metadata: { roles: ['gallery-editor'] } })).toString('base64url') + '.test-signature';
 const localEtags = new Map();
 globalThis.netlifyIdentityContext = { url: 'https://identity.test', token: 'local-test-only' };
 globalThis.fetch = async (input, init) => {
   if (String(input) === 'https://identity.test/user') {
+    assert.equal(init.headers.Authorization, 'Bearer ' + visitorToken(), 'visitor token, never runtime operator token');
     if (auth === 'expired') return new Response('{}', { status: 401 });
-    const user = { id: 'local-editor', email: 'logoscustombindings@yahoo.com', confirmed_at: new Date().toISOString(), invited_at: new Date().toISOString(), app_metadata: { roles: auth === 'wrong-role' ? [] : ['gallery-editor'] }, user_metadata: { roles: ['gallery-editor'] } };
+    const user = { id: 'local-editor', email: 'logoscustombindings@yahoo.com', confirmed_at: new Date().toISOString(), invited_at: new Date().toISOString(), app_metadata: { roles: ['wrong-role', 'roles-updated'].includes(auth) ? [] : ['gallery-editor'] }, user_metadata: { roles: ['gallery-editor'] } };
     if (auth === 'wrong-email') user.email = 'nobody@example.test';
+    if (auth === 'brandall') { user.email = 'bbrake@senecar7.com'; delete user.invited_at; }
+    if (auth === 'johnny-admin') delete user.invited_at;
     if (auth === 'unconfirmed') delete user.confirmed_at;
     return Response.json(user);
   }
@@ -42,14 +46,17 @@ globalThis.fetch = async (input, init) => {
   return response;
 };
 const origin = 'https://studio.test';
-const request = (path, body, headers = {}) => new Request(origin + path, { method: body === undefined ? 'GET' : 'POST', headers: { ...(body === undefined ? {} : { Origin: origin, 'Content-Type': 'application/json' }), ...headers }, body: body === undefined ? undefined : JSON.stringify(body) });
+const request = (path, body, headers = {}) => new Request(origin + path, { method: body === undefined ? 'GET' : 'POST', headers: { Cookie: 'nf_jwt=' + visitorToken(), ...(body === undefined ? {} : { Origin: origin, 'Content-Type': 'application/json' }), ...headers }, body: body === undefined ? undefined : JSON.stringify(body) });
 const action = async (body, status = 200, headers) => { const r = await gallery(request('/api/gallery?private=1', body, headers)); const data = await r.json(); assert.equal(r.status, status, JSON.stringify(data)); return data; };
 const feed = async () => { const r = await gallery(request('/api/gallery')); assert.equal(r.status, 200); return r.json(); };
 try {
   const store = getStore({ name: 'gallery-projects-v1', consistency: 'strong' });
   assert.equal((await gallery(request('/api/gallery'))).status, 503, 'uninitialized storage is not a successful empty gallery');
   await store.setJSON('seed-complete', { test: true });
+  assert.equal((await gallery(request('/api/gallery?private=1', undefined, { Cookie: '' }))).status, 401, 'operator context never authenticates anonymous visitors');
   for (const [state, expected] of [['expired', 401], ['wrong-role', 403], ['wrong-email', 403], ['unconfirmed', 401]]) { auth = state; await action({ action: 'create' }, expected); assert.equal((await gallery(request('/api/gallery?private=1'))).status, expected); }
+  auth = 'editor';
+  for (const state of ['brandall', 'johnny-admin', 'roles-updated']) { auth = state; await action({ action: 'create' }, 201); }
   auth = 'editor';
   await action({ action: 'create' }, 403, { Origin: 'https://attacker.test' });
   await action({ action: 'create' }, 403, { Origin: '' });
@@ -60,7 +67,9 @@ try {
   await action({ action: 'publish', id: p.id, etag: p.etag, draft: p.draft }, 400);
   const photoId = 'photo-local-0001';
   const mediaPath = `/api/gallery-media?project=${p.id}&photo=${photoId}`;
-  const upload = data => media(new Request(origin + mediaPath, { method: 'POST', headers: { Origin: origin, 'Content-Type': 'image/jpeg' }, body: data }));
+  const upload = data => media(new Request(origin + mediaPath, { method: 'POST', headers: { Origin: origin, Cookie: 'nf_jwt=' + visitorToken(), 'Content-Type': 'image/jpeg' }, body: data }));
+  for (const [state, expected] of [['expired', 401], ['wrong-role', 403], ['wrong-email', 403], ['unconfirmed', 401]]) { auth = state; assert.equal((await upload(Buffer.from('test'))).status, expected); assert.equal((await media(request(mediaPath + '&private=1'))).status, expected); }
+  auth = 'editor';
   assert.equal((await upload(Buffer.from('<svg onload="alert(1)"/>'))).status, 415);
   assert.equal((await upload(Buffer.alloc(3 * 1024 * 1024 + 1))).status, 413);
   const original = await sharp({ create: { width: 180, height: 100, channels: 3, background: '#9a684a' } }).withMetadata({ orientation: 6 }).jpeg().toBuffer();

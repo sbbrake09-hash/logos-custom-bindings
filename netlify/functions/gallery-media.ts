@@ -1,4 +1,3 @@
-import sharp from "sharp";
 import type { Config } from "@netlify/functions";
 import { editor, media, readProject, validId, json, failure, limitedBody, HttpError } from "./_shared/gallery";
 
@@ -26,6 +25,8 @@ export default async (request: Request) => {
     const input = await limitedBody(request, 3 * 1024 * 1024);
     let full, thumbnail;
     try {
+      // Serving saved photographs must not depend on the upload encoder loading.
+      const { default: sharp } = await import("sharp");
       const source = sharp(input, { limitInputPixels: 48_000_000, animated: false, failOn: "warning" });
       const info = await source.metadata();
       if (!["jpeg", "png", "webp"].includes(info.format || "") || (info.pages || 1) > 1) throw new Error("Not a photograph");

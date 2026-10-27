@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { readFile, access } from "node:fs/promises";
 import { fixture } from "./gallery-fixture.mjs";
 const fetchOriginal = globalThis.fetch;
 globalThis.fetch = (input, init) => String(input) === "https://logos-custom-bindings.netlify.app/api/gallery" ? Promise.resolve(Response.json(fixture)) : fetchOriginal(input, init);
@@ -105,6 +106,25 @@ test("server-renders the quote page and crawlable navigation", async () => {
   assert.match(html, /name="email"/i);
   assert.match(html, /Your answers go directly to logoscustombindings@yahoo\.com/i);
   assert.match(html, /How it works/i);
+});
+
+test("the complete source intake has registered submission fields and local example photos", async () => {
+  const fields = JSON.parse(await readFile(new URL('../app/components/quote-fields.json', import.meta.url), 'utf8'));
+  const skeleton = await readFile(new URL('../public/__forms.html', import.meta.url), 'utf8');
+  const contacts = { 'q6_name[first]': 'first-name', 'q6_name[last]': 'last-name', 'q9_phoneNumber[full]': 'phone', q8_email: 'email' };
+  for (const field of fields) {
+    for (const input of field.inputs || []) {
+      assert.ok(skeleton.includes(`name="${contacts[input.name] || input.name}"`), `Unregistered field: ${input.name}`);
+    }
+    if (field.type === 'image') await access(new URL(`../public${field.src}`, import.meta.url));
+  }
+  assert.equal(fields.filter(field => field.type === 'image').length, 6);
+  const html = await (await render('/request-a-quote/')).text();
+  for (const name of ['q7_address[addr_line1]', 'q7_address[addr_line2]', 'q7_address[city]', 'q7_address[state]', 'q7_address[postal]', 'q73_bibleDescription', 'q74_bibleWidth', 'q76_bibleHeight', 'q77_spineThickness', 'q89_coverType', 'q56_yappcover', 'q13_typeA', 'q96_endPages', 'q28_spineRibs', 'q48_interiorLiner48', 'q51_namePersonalization', 'q45_imprintingother', 'q57_ribbonMarker', 'q98_specialRequests', 'q80_wedLove']) {
+    assert.ok(html.includes(`name="${name}"`), `Missing intake field: ${name}`);
+  }
+  assert.match(html, /NON-REFUNDABLE deposit of \$75/);
+  assert.match(html, /610 Joy St\. Neosho, Mo\. 64850/);
 });
 
 test("all pages retain accessible navigation, content, and metadata", async () => {

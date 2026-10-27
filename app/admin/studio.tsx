@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element, @next/next/no-html-link-for-pages */
 import { useEffect, useRef, useState } from "react";
-import { acceptInvite, getUser, handleAuthCallback, login, logout, onAuthChange, requestPasswordRecovery, updateUser } from "@netlify/identity";
+import { acceptInvite, getUser, handleAuthCallback, login, logout, onAuthChange, refreshSession, requestPasswordRecovery, updateUser } from "@netlify/identity";
 import { categories, type EditorProject, type Photo, type Revision } from "../gallery/model";
 import { galleryOrigin, photoUrl, studioUrl } from "../gallery/origins";
 import PortfolioGallery from "../components/PortfolioGallery";
@@ -32,9 +32,10 @@ function uploadImage(id: string, photo: string, blob: Blob, progress: (value: nu
 
 export default function Studio() {
   const [ready, setReady] = useState(false), [mirror, setMirror] = useState(false);
-  const [signedIn, setSignedIn] = useState(false), [email, setEmail] = useState("logoscustombindings@yahoo.com"), [password, setPassword] = useState("");
+  const [signedIn, setSignedIn] = useState(false), [email, setEmail] = useState(""), [password, setPassword] = useState(""), [showPassword, setShowPassword] = useState(false);
   const [mode, setMode] = useState<"login" | "recover" | "password">("login"), [invite, setInvite] = useState<string | null>(null);
   const [message, setMessage] = useState(""), [error, setError] = useState("");
+  const [loadingProjects, setLoadingProjects] = useState(false);
   const [projects, setProjects] = useState<EditorProject[] | null>(null), [placement, setPlacement] = useState<Placement>({ ids: [], etag: "new" });
   const [project, setProject] = useState<EditorProject | null>(null), [draft, setDraft] = useState<Revision | null>(null);
   const [dirty, setDirty] = useState(false), [busy, setBusy] = useState(false), [tab, setTab] = useState("All projects");
@@ -42,11 +43,11 @@ export default function Studio() {
   const [authNeeded, setAuthNeeded] = useState(false);
   const init = useRef(false), previewDialog = useRef<HTMLDialogElement>(null);
   const previewTrigger = useRef<HTMLButtonElement>(null);
-  const load = async () => { const data = await api(); setProjects(data.projects); setPlacement({ ...data.features, ids: data.features.ids.filter((id: string) => data.projects.some((p: EditorProject) => p.id === id && p.published && !p.archived)) }); };
+  const load = async () => { setLoadingProjects(true); try { const data = await api(); setProjects(data.projects); setPlacement({ ...data.features, ids: data.features.ids.filter((id: string) => data.projects.some((p: EditorProject) => p.id === id && p.published && !p.archived)) }); } finally { setLoadingProjects(false); } };
 
   useEffect(() => {
     if (init.current) return; init.current = true;
-    if (window.location.origin !== galleryOrigin && !window.location.hostname.endsWith("--logos-custom-bindings.netlify.app")) { setMirror(true); setReady(true); return; }
+    if (window.location.origin !== galleryOrigin && window.location.origin !== new URL(studioUrl).origin && !window.location.hostname.endsWith("--logos-custom-bindings.netlify.app")) { setMirror(true); setReady(true); return; }
     (async () => {
       const result = await handleAuthCallback();
       if (result?.type === "invite") { setInvite(result.token || null); setMode("password"); }
@@ -56,6 +57,13 @@ export default function Studio() {
     })().catch(e => setError(e.message)).finally(() => setReady(true));
   }, []);
   useEffect(() => onAuthChange((event, user) => { if (event === "logout") { setSignedIn(false); setAuthNeeded(true); } else if (user) setSignedIn(true); }), []);
+  useEffect(() => {
+    // Identity already renews active sessions. Also check after returning to a
+    // backgrounded tab, without storing credentials or disturbing draft edits.
+    const resume = () => { if (document.visibilityState === "visible" && signedIn) void refreshSession().catch(() => {}); };
+    document.addEventListener("visibilitychange", resume);
+    return () => document.removeEventListener("visibilitychange", resume);
+  }, [signedIn]);
   useEffect(() => {
     const warn = (event: BeforeUnloadEvent) => { if (dirty || busy) event.preventDefault(); };
     window.addEventListener("beforeunload", warn); return () => window.removeEventListener("beforeunload", warn);
@@ -120,25 +128,25 @@ export default function Studio() {
       if (mode === "recover") { await requestPasswordRecovery(email); setMessage("If this email has an account, a password reset link is on its way. Check your inbox and spam folder."); return; }
       if (mode === "password") { if (invite) await acceptInvite(invite, password); else await updateUser({ password }); setInvite(null); }
       else await login(email, password);
-      setPassword(""); setMode("login"); setSignedIn(true); setAuthNeeded(false); await load();
+      setPassword(""); setShowPassword(false); setMode("login"); setSignedIn(true); setAuthNeeded(false); await load();
     });
   }}>
-    <h2>{mode === "password" ? invite ? "Welcome, Johnny." : "Choose a new password." : mode === "recover" ? "Reset your password." : "Welcome back, Johnny."}</h2>
-    <p>{mode === "password" ? "Choose a password of at least 12 characters that you don’t use anywhere else." : "Your photographs. Your stories. A space to share the work."}</p>
+    <h2>{mode === "password" ? "Choose a new password." : mode === "recover" ? "Reset your password." : "Welcome to Gallery Studio."}</h2>
+    <p>{mode === "password" ? "Choose a password of at least 9 characters." : "Sign in to upload photographs and share your work."}</p>
     {mode !== "password" && <label>Email address<input type="email" required autoComplete="username" value={email} onChange={e => setEmail(e.target.value)} /></label>}
-    {mode !== "recover" && <label>{mode === "password" ? "New password" : "Password"}<input type="password" required minLength={mode === "password" ? 12 : 1} autoComplete={mode === "password" ? "new-password" : "current-password"} value={password} onChange={e => setPassword(e.target.value)} /></label>}
+    {mode !== "recover" && <><label>{mode === "password" ? "New password" : "Password"}<input type={showPassword ? "text" : "password"} required minLength={mode === "password" ? 9 : 1} autoComplete={mode === "password" ? "new-password" : "current-password"} value={password} onChange={e => setPassword(e.target.value)} /></label><button className="studio-link" type="button" aria-pressed={showPassword} onClick={() => setShowPassword(value => !value)}>{showPassword ? "Hide password" : "Show password"}</button></>}
     <button className="button" disabled={busy}>{busy ? "Please wait…" : mode === "recover" ? "Send reset link" : mode === "password" ? "Save password" : "Sign in"}</button>
     {mode !== "password" && <button className="studio-link" type="button" onClick={() => { setMode(mode === "recover" ? "login" : "recover"); setError(""); }}>{mode === "recover" ? "Back to sign in" : "Forgot your password?"}</button>}
-    <small>Invitation-only access. Need help? Contact the person who manages your website.</small>
+    <small>Private access for Johnny and Brandall.</small>
   </form>;
 
-  return <div className="studio"><header className="studio-header"><a className="studio-brand" href="/"><img className="studio-emblem" src="/logos-bible-rebinder-emblem.png" width="1253" height="589" alt="Logos The Bible Rebinder" /><span className="studio-brand-label">Gallery Studio</span></a><div className="studio-actions"><a href="/portfolio/">View website ↗</a>{signedIn && <button disabled={busy} onClick={() => { if (dirty && !confirm("Leave unsaved edits? Your last saved draft is safe.")) return; void run(async () => { await logout(); setProject(null); setDraft(null); setProjects(null); setDirty(false); setUploads([]); }); }}>Sign out</button>}</div></header>
+  return <div className="studio"><header className="studio-header"><a className="studio-brand" href="/"><img className="studio-emblem" src="/logos-bible-rebinder-emblem.png" width="1253" height="589" alt="Logos The Bible Rebinder" /><span className="studio-brand-label">Gallery Studio</span></a><div className="studio-actions"><a href="/portfolio/">Portfolio ↗</a>{signedIn && <button disabled={busy} onClick={() => { if (dirty && !confirm("Leave unsaved edits? Your last saved draft is safe.")) return; void run(async () => { await logout(); setProject(null); setDraft(null); setProjects(null); setDirty(false); setUploads([]); }); }}>Sign out</button>}</div></header>
     <main id="main-content" className="studio-main">
       {error && <div className="studio-alert" role="alert">{error}</div>}{message && <div className="studio-notice" role="status">{message}</div>}
-      {!ready ? <p role="status">Opening your studio…</p> : mirror ? <div className="studio-auth"><h1>Your gallery studio.</h1><p>Editing lives on the main website. Published projects appear here automatically, too.</p><a className="button" href={studioUrl}>Open Johnny’s studio ↗</a></div> : (!signedIn || mode === "password" || authNeeded) ? authForm : <>
-        {!project ? <><div className="studio-heading"><div><p className="eyebrow">The work, collected</p><h1>Your projects.</h1><p>Save privately. Publish when it feels right.</p></div><button className="button" disabled={busy} onClick={() => void run(async () => { const value = await api({ action: "create" }); setProjects(current => [value, ...(current || [])]); edit(value); })}>＋ New project</button></div>
+      {!ready ? <p role="status">Opening your studio…</p> : mirror ? <div className="studio-auth"><h1>Your gallery studio.</h1><p>Editing lives on the main website. Published projects appear here automatically, too.</p><a className="button" href={studioUrl}>Open Gallery Studio ↗</a></div> : (!signedIn || mode === "password" || authNeeded) ? authForm : <>
+        {!project ? <><div className="studio-heading"><div><p className="eyebrow">The work, collected</p><h1>Your projects.</h1><p>Save privately. Publish when it feels right.</p></div><button className="button" disabled={busy || loadingProjects} onClick={() => void run(async () => { const value = await api({ action: "create" }); setProjects(current => [value, ...(current || [])]); edit(value); })}>＋ New project</button></div>
           <div className="studio-tabs" role="group" aria-label="Project status">{["All projects", "Published", "Drafts", "Archived"].map(t => <button key={t} aria-pressed={tab === t} onClick={() => setTab(t)}>{t}</button>)}</div>
-          {!projects ? <div className="studio-empty"><p>Your projects could not be loaded. Nothing has been removed.</p><button onClick={() => void run(load)}>Try again</button></div> : !displayed?.length ? <p className="studio-empty">No projects here yet.</p> : <div className="studio-grid">{displayed.map(p => { const cover = p.draft.photos.find(photo => photo.id === p.draft.coverId); return <article className="studio-card" key={p.id}>{cover ? <img src={photoUrl(p.id, cover.id, "thumb", true)} alt={cover.alt || "Project cover"} width={cover.width} height={cover.height} loading="lazy" /> : <div className="studio-no-photo">A new story starts here.</div>}<div className="studio-card-copy"><span className="eyebrow">{p.archived ? "Archived" : p.published ? p.draft.revision !== p.published.revision ? "Published · draft changes" : "Published" : "Draft"}</span><h2>{p.draft.title || "Untitled project"}</h2><p>{p.draft.category}</p><div className="studio-actions"><button disabled={busy} onClick={() => edit(p)}>{p.archived ? "Open" : "Edit project"}</button>{p.published && !p.archived && <button aria-pressed={placement.ids.includes(p.id)} disabled={busy} onClick={() => void run(async () => { const ids = placement.ids.includes(p.id) ? placement.ids.filter(id => id !== p.id) : [...placement.ids, p.id]; if (ids.length > 3) throw new Error("Three projects are already featured. Unfeature one first."); setPlacement(await api({ action: "features", ids, etag: placement.etag })); setMessage("Homepage selection saved."); })}>{placement.ids.includes(p.id) ? "★ Featured" : "☆ Feature"}</button>}</div></div></article>; })}</div>}
+          {!projects && loadingProjects ? <p className="studio-empty" role="status">Opening your projects…</p> : !projects ? <div className="studio-empty"><p>Your projects could not be loaded. Nothing has been removed.</p><button onClick={() => void run(load)}>Try again</button></div> : !displayed?.length ? <p className="studio-empty">No projects here yet.</p> : <div className="studio-grid">{displayed.map(p => { const cover = p.draft.photos.find(photo => photo.id === p.draft.coverId); return <article className="studio-card" key={p.id}>{cover ? <img src={photoUrl(p.id, cover.id, "thumb", true)} alt={cover.alt || "Project cover"} width={cover.width} height={cover.height} loading="lazy" /> : <div className="studio-no-photo">A new story starts here.</div>}<div className="studio-card-copy"><span className="eyebrow">{p.archived ? "Archived" : p.published ? p.draft.revision !== p.published.revision ? "Published · draft changes" : "Published" : "Draft"}</span><h2>{p.draft.title || "Untitled project"}</h2><p>{p.draft.category}</p><div className="studio-actions"><button disabled={busy} onClick={() => edit(p)}>{p.archived ? "Open" : "Edit project"}</button>{p.published && !p.archived && <button aria-pressed={placement.ids.includes(p.id)} disabled={busy} onClick={() => void run(async () => { const ids = placement.ids.includes(p.id) ? placement.ids.filter(id => id !== p.id) : [...placement.ids, p.id]; if (ids.length > 3) throw new Error("Three projects are already featured. Unfeature one first."); setPlacement(await api({ action: "features", ids, etag: placement.etag })); setMessage("Homepage selection saved."); })}>{placement.ids.includes(p.id) ? "★ Featured" : "☆ Feature"}</button>}</div></div></article>; })}</div>}
           <details className="studio-guide"><summary>A short guide to your studio</summary><ol><li>Choose New project, add a title, service category, and a short story.</li><li>Add photos from your phone or computer. Keep this tab open while each photo processes.</li><li>Add alt text describing what each photo shows. Captions and Before/After labels are optional.</li><li>Choose a cover and use Move earlier / Move later to arrange photos.</li><li>Save draft keeps work private. Preview lets you check the layout. Publish makes it visible on both websites.</li><li>Choose Feature on up to three published projects. Any remaining homepage spaces use your newest projects.</li><li>Unpublish hides a project. Archive stores it away; Restore returns it as a draft.</li></ol></details>
         </> : draft && <><div className="studio-heading"><div><button className="studio-link" disabled={busy} onClick={() => { if (!dirty || confirm("Leave unsaved edits? Your last saved draft is safe.")) { setProject(null); setDraft(null); setDirty(false); setUploads([]); } }}>← All projects</button><h1>{draft.title || "A new project."}</h1><p>{project.archived ? "Archived · restore to edit" : dirty ? "Unsaved changes" : "All changes saved"}</p></div><div className="studio-actions"><button ref={previewTrigger} disabled={!draft.photos.length || busy} onClick={() => setPreview(true)}>Preview</button>{!project.archived && <><button disabled={busy} onClick={() => void run(async () => { await persist("save"); })}>Save draft</button><button className="button" disabled={busy || uploads.some(u => !u.done)} onClick={() => void run(async () => { await persist("publish"); })}>{project.published ? "Publish changes" : "Publish"}</button></>}</div></div>
           <fieldset className="studio-editor" disabled={busy || project.archived}>

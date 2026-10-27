@@ -1,0 +1,1049 @@
+[
+  {
+    "id": "79",
+    "type": "head",
+    "label": "logoscustombindings@yahoo.com",
+    "note": "417-389-1961"
+  },
+  {
+    "id": "4",
+    "type": "head",
+    "label": "Rebind Order Form",
+    "note": "Ship your bible to: 610 Joy St. Neosho, Mo. 64850"
+  },
+  {
+    "id": "6",
+    "type": "fullname",
+    "label": "Name",
+    "required": true,
+    "name": "q6_name[first]",
+    "options": [],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q6_name[first]",
+        "type": "text",
+        "value": "",
+        "required": true,
+        "autoComplete": "given-name",
+        "label": "First Name"
+      },
+      {
+        "tag": "input",
+        "name": "q6_name[last]",
+        "type": "text",
+        "value": "",
+        "required": true,
+        "autoComplete": "family-name",
+        "label": "Last Name"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "7",
+    "type": "address",
+    "label": "Address",
+    "required": true,
+    "name": "q7_address[addr_line1]",
+    "options": [],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q7_address[addr_line1]",
+        "type": "text",
+        "value": "",
+        "required": true,
+        "autoComplete": "address-line1",
+        "label": "Street Address"
+      },
+      {
+        "tag": "input",
+        "name": "q7_address[addr_line2]",
+        "type": "text",
+        "value": "",
+        "required": false,
+        "autoComplete": "address-line2",
+        "label": "Street Address Line 2"
+      },
+      {
+        "tag": "input",
+        "name": "q7_address[city]",
+        "type": "text",
+        "value": "",
+        "required": true,
+        "autoComplete": "address-level2",
+        "label": "City"
+      },
+      {
+        "tag": "input",
+        "name": "q7_address[state]",
+        "type": "text",
+        "value": "",
+        "required": true,
+        "autoComplete": "address-level1",
+        "label": "State / Province"
+      },
+      {
+        "tag": "input",
+        "name": "q7_address[postal]",
+        "type": "text",
+        "value": "",
+        "required": true,
+        "autoComplete": "postal-code",
+        "label": "Postal / Zip Code"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "9",
+    "type": "phone",
+    "label": "Phone Number",
+    "required": true,
+    "name": "q9_phoneNumber[full]",
+    "options": [],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q9_phoneNumber[full]",
+        "type": "tel",
+        "value": "",
+        "required": true,
+        "autoComplete": "tel-national",
+        "label": "Please enter a valid phone number."
+      }
+    ],
+    "note": "Please enter a valid phone number."
+  },
+  {
+    "id": "8",
+    "type": "email",
+    "label": "Email",
+    "required": false,
+    "name": "q8_email",
+    "options": [],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q8_email",
+        "type": "email",
+        "value": "",
+        "required": false,
+        "autoComplete": "email",
+        "label": "example@example.com"
+      }
+    ],
+    "note": "example@example.com"
+  },
+  {
+    "id": "73",
+    "type": "textbox",
+    "label": "Bible Description (original prior to rebinding):",
+    "required": true,
+    "name": "q73_bibleDescription",
+    "options": [],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q73_bibleDescription",
+        "type": "text",
+        "value": "",
+        "required": true,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "74",
+    "type": "number",
+    "label": "Bible width in inches (measure from spine to edge of cover):",
+    "required": true,
+    "name": "q74_bibleWidth",
+    "options": [],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q74_bibleWidth",
+        "type": "number",
+        "value": "",
+        "required": true,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "76",
+    "type": "number",
+    "label": "Bible height in inches (measure from top edge of cover to bottom edge):",
+    "required": true,
+    "name": "q76_bibleHeight",
+    "options": [],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q76_bibleHeight",
+        "type": "number",
+        "value": "",
+        "required": true,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "77",
+    "type": "number",
+    "label": "Spine thickness in inches:",
+    "required": true,
+    "name": "q77_spineThickness",
+    "options": [],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q77_spineThickness",
+        "type": "number",
+        "value": "",
+        "required": true,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "60",
+    "type": "textarea",
+    "label": "Major damage to be repaired (if applicable):",
+    "required": false,
+    "name": "q60_majorDamage",
+    "options": [],
+    "inputs": [
+      {
+        "tag": "textarea",
+        "name": "q60_majorDamage",
+        "type": "",
+        "value": "",
+        "required": false,
+        "autoComplete": "",
+        "label": "i.e. entire loose page sections, torn pages, etc. We can't guarantee all damage can be repaired, however we will do our best and advise if unable."
+      }
+    ],
+    "note": "i.e. entire loose page sections, torn pages, etc. We can't guarantee all damage can be repaired, however we will do our best and advise if unable."
+  },
+  {
+    "id": "88",
+    "type": "head",
+    "label": "Cover Options",
+    "note": ""
+  },
+  {
+    "id": "89",
+    "type": "radio",
+    "label": "Cover Type:",
+    "required": true,
+    "name": "q89_coverType",
+    "options": [
+      "Soft Cover",
+      "Hard Cover"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q89_coverType",
+        "type": "radio",
+        "value": "Soft Cover",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      },
+      {
+        "tag": "input",
+        "name": "q89_coverType",
+        "type": "radio",
+        "value": "Hard Cover",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "56",
+    "type": "radio",
+    "label": "Yapp (cover overhang, see examples below):",
+    "required": true,
+    "name": "q56_yappcover",
+    "options": [
+      "Standard 1/4in",
+      "Full Yapp"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q56_yappcover",
+        "type": "radio",
+        "value": "Standard 1/4in",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      },
+      {
+        "tag": "input",
+        "name": "q56_yappcover",
+        "type": "radio",
+        "value": "Full Yapp",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "92",
+    "type": "image",
+    "src": "/quote-examples/92.jfif",
+    "alt": "Standard 1/4-inch yapp",
+    "width": 150,
+    "height": 200
+  },
+  {
+    "id": "90",
+    "type": "image",
+    "src": "/quote-examples/90.jfif",
+    "alt": "Full yapp",
+    "width": 150,
+    "height": 200
+  },
+  {
+    "id": "19",
+    "type": "head",
+    "label": "Leather Options",
+    "note": ""
+  },
+  {
+    "id": "13",
+    "type": "radio",
+    "label": "Cover:",
+    "required": true,
+    "name": "q13_typeA",
+    "options": [
+      "Cowhide",
+      "Goatskin",
+      "Ostrich",
+      "other"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q13_typeA",
+        "type": "radio",
+        "value": "Cowhide",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      },
+      {
+        "tag": "input",
+        "name": "q13_typeA",
+        "type": "radio",
+        "value": "Goatskin",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      },
+      {
+        "tag": "input",
+        "name": "q13_typeA",
+        "type": "radio",
+        "value": "Ostrich",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      },
+      {
+        "tag": "input",
+        "name": "q13_typeA",
+        "type": "radio",
+        "value": "other",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      },
+      {
+        "tag": "input",
+        "name": "q13_typeA[other]",
+        "type": "text",
+        "value": "",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "17",
+    "type": "textbox",
+    "label": "Cover Color Preference:",
+    "required": true,
+    "name": "q17_typeA17",
+    "options": [],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q17_typeA17",
+        "type": "text",
+        "value": "",
+        "required": true,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "18",
+    "type": "textbox",
+    "label": "Interior Liner Color Preference:",
+    "required": true,
+    "name": "q18_interiorLiner",
+    "options": [],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q18_interiorLiner",
+        "type": "text",
+        "value": "",
+        "required": true,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "96",
+    "type": "radio",
+    "label": "End Pages (pages directly inside the front and rear cover, colors will be chosen to correspond with interior liner):",
+    "required": true,
+    "name": "q96_endPages",
+    "options": [
+      "Cardstock (standard option)",
+      "Smooth Acrylic",
+      "Custom Photographic (Must provide high quality digital PDF image as we cannot be held responsible for lost original prints.)"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q96_endPages",
+        "type": "radio",
+        "value": "Cardstock (standard option)",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      },
+      {
+        "tag": "input",
+        "name": "q96_endPages",
+        "type": "radio",
+        "value": "Smooth Acrylic",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      },
+      {
+        "tag": "input",
+        "name": "q96_endPages",
+        "type": "radio",
+        "value": "Custom Photographic (Must provide high quality digital PDF image as we cannot be held responsible for lost original prints.)",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "99",
+    "type": "dropdown",
+    "label": "Smooth Acrylic Color:",
+    "required": true,
+    "name": "q99_smoothAcrylic",
+    "options": [
+      "Black",
+      "Navy",
+      "Wine"
+    ],
+    "inputs": [
+      {
+        "tag": "select",
+        "name": "q99_smoothAcrylic",
+        "type": "",
+        "value": "",
+        "required": true,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "97",
+    "type": "radio",
+    "label": "Photographic End Pages:",
+    "required": true,
+    "name": "q97_photographicEnd",
+    "options": [
+      "Front Only",
+      "Front and Rear"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q97_photographicEnd",
+        "type": "radio",
+        "value": "Front Only",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      },
+      {
+        "tag": "input",
+        "name": "q97_photographicEnd",
+        "type": "radio",
+        "value": "Front and Rear",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "20",
+    "type": "head",
+    "label": "Tooling Options",
+    "note": ""
+  },
+  {
+    "id": "28",
+    "type": "radio",
+    "label": "Spine RIbs (see examples below):",
+    "required": true,
+    "name": "q28_spineRibs",
+    "options": [
+      "None",
+      "Tooled Ribs (spine width only)",
+      "Raised Ribs"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q28_spineRibs",
+        "type": "radio",
+        "value": "None",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      },
+      {
+        "tag": "input",
+        "name": "q28_spineRibs",
+        "type": "radio",
+        "value": "Tooled Ribs (spine width only)",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      },
+      {
+        "tag": "input",
+        "name": "q28_spineRibs",
+        "type": "radio",
+        "value": "Raised Ribs",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "93",
+    "type": "image",
+    "src": "/quote-examples/93.jpg",
+    "alt": "Tooled spine ribs",
+    "width": 150,
+    "height": 200
+  },
+  {
+    "id": "94",
+    "type": "image",
+    "src": "/quote-examples/94.jfif",
+    "alt": "Raised spine ribs",
+    "width": 150,
+    "height": 200
+  },
+  {
+    "id": "39",
+    "type": "dropdown",
+    "label": "Tooled Rib Color:",
+    "required": true,
+    "name": "q39_tooledRib",
+    "options": [
+      "Blind (imprint w/o color)",
+      "Gold",
+      "Silver",
+      "Blue",
+      "Red",
+      "Black",
+      "Copper"
+    ],
+    "inputs": [
+      {
+        "tag": "select",
+        "name": "q39_tooledRib",
+        "type": "",
+        "value": "",
+        "required": true,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "40",
+    "type": "dropdown",
+    "label": "Raised Rib Options:",
+    "required": true,
+    "name": "q40_raisedRib",
+    "options": [
+      "Spine Width (shown in example)",
+      "Wrap Around (extends onto front and rear cover)"
+    ],
+    "inputs": [
+      {
+        "tag": "select",
+        "name": "q40_raisedRib",
+        "type": "",
+        "value": "",
+        "required": true,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "42",
+    "type": "textbox",
+    "label": "Spine/Cover Raised Special Shapes If Desired (we can not guarantee we can fulfill every request, but we will do our best to accommodate):",
+    "required": false,
+    "name": "q42_spinecoverRaised",
+    "options": [],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q42_spinecoverRaised",
+        "type": "text",
+        "value": "",
+        "required": false,
+        "autoComplete": "",
+        "label": "e.g. Curved spines, sword, etc."
+      }
+    ],
+    "note": "e.g. Curved spines, sword, etc."
+  },
+  {
+    "id": "48",
+    "type": "radio",
+    "label": "Interior Liner Tooled Lines (see example below, shown in blue):",
+    "required": true,
+    "name": "q48_interiorLiner48",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q48_interiorLiner48",
+        "type": "radio",
+        "value": "Yes",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      },
+      {
+        "tag": "input",
+        "name": "q48_interiorLiner48",
+        "type": "radio",
+        "value": "No",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "95",
+    "type": "image",
+    "src": "/quote-examples/95.jpg",
+    "alt": "Interior liner tooled lines shown in blue",
+    "width": 150,
+    "height": 237
+  },
+  {
+    "id": "82",
+    "type": "dropdown",
+    "label": "Interior Liner Tooled Line Color:",
+    "required": true,
+    "name": "q82_interiorLiner82",
+    "options": [
+      "Gold",
+      "Silver",
+      "Blue",
+      "Red",
+      "Black",
+      "Copper"
+    ],
+    "inputs": [
+      {
+        "tag": "select",
+        "name": "q82_interiorLiner82",
+        "type": "",
+        "value": "",
+        "required": true,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "51",
+    "type": "radio",
+    "label": "Name Personalization (FREE with order up to 2 lines):",
+    "required": true,
+    "name": "q51_namePersonalization",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q51_namePersonalization",
+        "type": "radio",
+        "value": "Yes",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      },
+      {
+        "tag": "input",
+        "name": "q51_namePersonalization",
+        "type": "radio",
+        "value": "No",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "53",
+    "type": "textbox",
+    "label": "Enter your name exactly how you want it to appear on lower left front cover:",
+    "required": true,
+    "name": "q53_enterYour",
+    "options": [],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q53_enterYour",
+        "type": "text",
+        "value": "",
+        "required": true,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "84",
+    "type": "image",
+    "src": "/quote-examples/personalization-fonts-5.jfif",
+    "alt": "Name personalization font examples numbered 1 through 5",
+    "width": 1050,
+    "height": 600
+  },
+  {
+    "id": "54",
+    "type": "dropdown",
+    "label": "Font (See above):",
+    "required": true,
+    "name": "q54_fontsee",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "inputs": [
+      {
+        "tag": "select",
+        "name": "q54_fontsee",
+        "type": "",
+        "value": "",
+        "required": true,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "55",
+    "type": "dropdown",
+    "label": "Color:",
+    "required": true,
+    "name": "q55_color",
+    "options": [
+      "Blind (imprint w/o color)",
+      "Gold",
+      "Silver",
+      "Blue",
+      "Red",
+      "Black",
+      "Copper"
+    ],
+    "inputs": [
+      {
+        "tag": "select",
+        "name": "q55_color",
+        "type": "",
+        "value": "",
+        "required": true,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "45",
+    "type": "radio",
+    "label": "Imprinting (other than name personalization):",
+    "required": true,
+    "name": "q45_imprintingother",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q45_imprintingother",
+        "type": "radio",
+        "value": "Yes",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      },
+      {
+        "tag": "input",
+        "name": "q45_imprintingother",
+        "type": "radio",
+        "value": "No",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "46",
+    "type": "checkbox",
+    "label": "Imprinting Options:",
+    "required": true,
+    "name": "q46_imprintingOptions[]",
+    "options": [
+      "Spine",
+      "Cover",
+      "Front Interior Liner",
+      "Rear Interior Liner",
+      "Other"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q46_imprintingOptions[]",
+        "type": "checkbox",
+        "value": "Spine",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      },
+      {
+        "tag": "input",
+        "name": "q46_imprintingOptions[]",
+        "type": "checkbox",
+        "value": "Cover",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      },
+      {
+        "tag": "input",
+        "name": "q46_imprintingOptions[]",
+        "type": "checkbox",
+        "value": "Front Interior Liner",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      },
+      {
+        "tag": "input",
+        "name": "q46_imprintingOptions[]",
+        "type": "checkbox",
+        "value": "Rear Interior Liner",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "47",
+    "type": "textbox",
+    "label": "Imprinting Instructions:",
+    "required": true,
+    "name": "q47_imprintingInstructions",
+    "options": [],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q47_imprintingInstructions",
+        "type": "text",
+        "value": "",
+        "required": true,
+        "autoComplete": "",
+        "label": "Include location and exact phrasing."
+      }
+    ],
+    "note": "Include location and exact phrasing."
+  },
+  {
+    "id": "57",
+    "type": "number",
+    "label": "Ribbon Marker Quantity (up to 3 FREE, $2 for each additional):",
+    "required": true,
+    "name": "q57_ribbonMarker",
+    "options": [],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q57_ribbonMarker",
+        "type": "number",
+        "value": "",
+        "required": true,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "58",
+    "type": "textbox",
+    "label": "Ribbon Marker Colors (all the same or mix and match):",
+    "required": true,
+    "name": "q58_ribbonMarker58",
+    "options": [],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q58_ribbonMarker58",
+        "type": "text",
+        "value": "",
+        "required": true,
+        "autoComplete": "",
+        "label": "Multiple in same color, or mix and match various colors."
+      }
+    ],
+    "note": "Multiple in same color, or mix and match various colors."
+  },
+  {
+    "id": "98",
+    "type": "textarea",
+    "label": "Special Requests",
+    "required": false,
+    "name": "q98_specialRequests",
+    "options": [],
+    "inputs": [
+      {
+        "tag": "textarea",
+        "name": "q98_specialRequests",
+        "type": "",
+        "value": "",
+        "required": false,
+        "autoComplete": "",
+        "label": "Request an option not listed on this form here. We can't guarantee we can include them, but we will do our best to accommodate."
+      }
+    ],
+    "note": "Request an option not listed on this form here. We can't guarantee we can include them, but we will do our best to accommodate."
+  },
+  {
+    "id": "61",
+    "type": "head",
+    "label": "Payment Options",
+    "note": "A NON-REFUNDABLE deposit of $75 is required prior to work starting. Remaining balance is due upon completion and before shipment. Price will be sent back upon submission of this order form."
+  },
+  {
+    "id": "69",
+    "type": "head",
+    "label": "Please Note: Any changes or additions requested after this form is signed and finalized may result in price or timeline adjustments.",
+    "note": ""
+  },
+  {
+    "id": "80",
+    "type": "textbox",
+    "label": "We'd love to know! Tell us how you found us:",
+    "required": false,
+    "name": "q80_wedLove",
+    "options": [],
+    "inputs": [
+      {
+        "tag": "input",
+        "name": "q80_wedLove",
+        "type": "text",
+        "value": "",
+        "required": false,
+        "autoComplete": "",
+        "label": ""
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "81",
+    "type": "head",
+    "label": "Thank you so much for your business!",
+    "note": ""
+  }
+]
